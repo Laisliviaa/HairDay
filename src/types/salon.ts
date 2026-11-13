@@ -7,6 +7,7 @@ export type Procedure = {
   name: string
   durationMin: number
   price: number
+  color: string // cor da "amostra" usada na agenda
   combinesWith: string[] // ids de procedimentos que podem ser feitos junto
 }
 

@@ -13,10 +13,10 @@ type SalonContextType = {
 }
 
 const initialProcedures: Procedure[] = [
-  { id: 'corte', name: 'Corte', durationMin: 30, price: 40, combinesWith: ['barba'] },
-  { id: 'barba', name: 'Barba', durationMin: 30, price: 30, combinesWith: ['corte'] },
-  { id: 'unha', name: 'Unha', durationMin: 60, price: 50, combinesWith: ['progressiva'] },
-  { id: 'progressiva', name: 'Progressiva', durationMin: 180, price: 250, combinesWith: ['unha'] },
+  { id: 'corte', name: 'Corte', durationMin: 30, price: 40, color: '#F4A6C0', combinesWith: ['barba'] },
+  { id: 'barba', name: 'Barba', durationMin: 30, price: 30, color: '#78CFC0', combinesWith: ['corte'] },
+  { id: 'unha', name: 'Unha', durationMin: 60, price: 50, color: '#F5C451', combinesWith: ['progressiva'] },
+  { id: 'progressiva', name: 'Progressiva', durationMin: 180, price: 250, color: '#B9A6F2', combinesWith: ['unha'] },
 ]
 
 const initialEmployees: Employee[] = [

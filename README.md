@@ -1,9 +1,9 @@
 # HairDay
 
-Sistema de agendamentos para salão/barbearia feito com React, Vite e TypeScript, baseado no protótipo do Figma da disciplina de SPA.
+Sistema de agendamentos para salão/barbearia feito com React, Vite e TypeScript, com identidade visual própria, para a disciplina de SPA.
 
 ## Funcionalidades
-- Agenda por data, dividida em Manhã, Tarde e Noite, com mensagem para período vazio
+- Agenda do dia em grade por profissional, dividida em Manhã, Tarde e Noite, com mensagem para período vazio
 - Cadastro de agendamento (cliente, data, procedimentos, profissional e horário) com validação
 - Horários flexíveis de 30 em 30 min: o tempo do atendimento é a soma dos procedimentos e não conflita com outro do mesmo profissional
 - Cadastro de procedimentos com tempo, valor e quais podem ser feitos juntos

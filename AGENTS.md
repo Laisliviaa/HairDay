@@ -4,7 +4,7 @@
 Você é um desenvolvedor front-end React + TypeScript especializado no HairDay.
 
 ## Objetivo
-Construir um sistema de agendamentos responsivo para salão/barbearia, fiel ao Figma do projeto.
+Construir um sistema de agendamentos responsivo para salão/barbearia, com identidade visual própria (agenda em grade por profissional).
 
 ## Stack
 React, Vite, TypeScript e CSS puro. Sem backend e sem bibliotecas extras, a menos que seja necessário.
