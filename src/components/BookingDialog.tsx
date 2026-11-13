@@ -1,141 +1,173 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
-import { SLOT_STARTS, STEP, CLOSE, blockMinutes, canCombine, formatDuration, money, toMinutes } from '../utils/helpers'
+import { useI18n, type Key } from '../i18n'
+import type { ServiceItem } from '../types/salon'
+import {
+  CLOSE, DEFAULT_LABEL, MAX_DATE, MIN_DATE, SLOT_STARTS, blockMinutes, canCombine, formatCPF, formatDuration,
+  inRange, money, priceOn, round2, toMinutes, worksOn,
+} from '../utils/helpers'
+import { ClientForm } from './ClientForm'
+import { Modal } from './Modal'
 
 export type BookingTarget = { date: string; employeeId: string; time: string }
 
-type DialogProps = {
-  target: BookingTarget | null
-  onClose: () => void
-  onSaved: (date: string) => void
-}
+type DialogProps = { target: BookingTarget | null; onClose: () => void; onSaved: (date: string) => void }
 
 export function BookingDialog({ target, onClose, onSaved }: DialogProps) {
-  const ref = useRef<HTMLDialogElement>(null)
-
-  useEffect(() => {
-    const dialog = ref.current
-    if (!dialog) return
-    if (target && !dialog.open) dialog.showModal()
-    if (!target && dialog.open) dialog.close()
-  }, [target])
-
   return (
-    <dialog ref={ref} onClose={onClose}>
+    <Modal open={!!target} onClose={onClose}>
       {target && <BookingForm initial={target} onCancel={onClose} onSaved={onSaved} />}
-    </dialog>
+    </Modal>
   )
 }
 
-type FormProps = {
-  initial: BookingTarget
-  onCancel: () => void
-  onSaved: (date: string) => void
-}
+type FormProps = { initial: BookingTarget; onCancel: () => void; onSaved: (date: string) => void }
+type Deposit = '' | 'none' | 'half' | 'full'
 
 function BookingForm({ initial, onCancel, onSaved }: FormProps) {
-  const { procedures, employees, appointments, addAppointment } = useSalon()
+  const { t, tl } = useI18n()
+  const { procedures, employees, clients, appointments, blocks, addAppointment } = useSalon()
+  const [clientId, setClientId] = useState('')
+  const [creating, setCreating] = useState(clients.length === 0)
   const [date, setDate] = useState(initial.date)
-  const [clientName, setClientName] = useState('')
-  const [selected, setSelected] = useState<string[]>([])
+  const [selected, setSelected] = useState<string[]>([]) // ids das variações escolhidas
   const [employeeId, setEmployeeId] = useState(initial.employeeId)
   const [time, setTime] = useState(initial.time)
-  const [errors, setErrors] = useState<string[]>([])
+  const [deposit, setDeposit] = useState<Deposit>('') // começa vazio de propósito
+  const [errors, setErrors] = useState<Key[]>([])
 
-  const chosen = procedures.filter((p) => selected.includes(p.id))
-  const durationMin = chosen.reduce((sum, p) => sum + p.durationMin, 0)
-  const total = chosen.reduce((sum, p) => sum + p.price, 0)
+  const chosen = procedures.flatMap((p) => p.variants.filter((x) => selected.includes(x.id)).map((x) => ({ p, v: x })))
+  const items: ServiceItem[] = chosen.map((c) => ({ procedureId: c.p.id, variantId: c.v.id }))
+  const durationMin = chosen.reduce((s, c) => s + c.v.durationMin, 0)
+  const total = round2(chosen.reduce((s, c) => s + priceOn(c.v, date), 0))
 
-  // profissionais disponíveis que fazem TODOS os procedimentos escolhidos
-  const capable = employees.filter((e) => e.available && selected.every((id) => e.procedureIds.includes(id)))
+  // profissionais que trabalham no dia, estão disponíveis e fazem TODOS os procedimentos escolhidos
+  const capable = employees.filter((e) => e.available && inRange(date) && worksOn(e, date) && chosen.every((c) => e.procedureIds.includes(c.p.id)))
+  const empId = capable.some((e) => e.id === employeeId) ? employeeId : ''
 
-  const busy = appointments.filter((a) => a.date === date && a.employeeId === employeeId)
+  const busy = appointments.filter((a) => a.date === date && a.employeeId === empId && a.status !== 'cancelled')
+  const locks = blocks.filter((b) => b.employeeId === empId && b.dateFrom <= date && date <= b.dateTo)
 
   function isFree(slot: string) {
     const start = toMinutes(slot)
     const end = start + blockMinutes(durationMin)
     if (end > CLOSE) return false
-    return !busy.some((a) => start < toMinutes(a.time) + blockMinutes(a.durationMin) && toMinutes(a.time) < end)
+    if (busy.some((a) => start < toMinutes(a.time) + blockMinutes(a.durationMin) && toMinutes(a.time) < end)) return false
+    return !locks.some((b) => start < toMinutes(b.end) && toMinutes(b.start) < end)
   }
 
-  const freeSlots = employeeId ? SLOT_STARTS.filter(isFree) : []
+  const freeSlots = empId ? SLOT_STARTS.filter(isFree) : []
   const currentTime = freeSlots.includes(time) ? time : ''
 
-  function toggleProcedure(id: string) {
-    const next = selected.includes(id) ? selected.filter((x) => x !== id) : [...selected, id]
-    setSelected(next)
-    const stillOk = employees.find((e) => e.id === employeeId && e.available && next.every((p) => e.procedureIds.includes(p)))
-    if (!stillOk) setEmployeeId('')
+  function toggleVariant(id: string) {
+    setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
   }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
-    const found: string[] = []
-    if (!clientName.trim()) found.push('Informe o nome do cliente.')
-    if (!date) found.push('Selecione uma data.')
-    if (selected.length === 0) found.push('Escolha ao menos um procedimento.')
-    else if (!employeeId) found.push('Escolha o profissional.')
-    else if (!currentTime) found.push('Escolha um horário livre.')
+    const found: Key[] = []
+    if (!clientId) found.push('err.client')
+    if (!date || !inRange(date)) found.push(date ? 'agenda.range' : 'err.date')
+    if (items.length === 0) found.push('err.procs')
+    else if (!empId) found.push('err.employee')
+    else if (!currentTime) found.push('err.time')
+    if (!deposit) found.push('err.payment')
     setErrors(found)
     if (found.length > 0) return
 
-    addAppointment({ clientName: clientName.trim(), date, time: currentTime, durationMin, total, procedureIds: selected, employeeId })
+    const paid = deposit === 'full' ? total : deposit === 'half' ? round2(total / 2) : 0
+    addAppointment({ clientId, date, time: currentTime, durationMin, total, paid, status: 'scheduled', items, employeeId: empId })
     onSaved(date)
     onCancel()
   }
 
+  if (creating) {
+    return <ClientForm onSaved={(id) => { setClientId(id); setCreating(false) }} onCancel={clients.length ? () => setCreating(false) : onCancel} />
+  }
+
+  const half = round2(total / 2)
+
   return (
     <form className="form" onSubmit={handleSubmit} noValidate>
-      <h2>Novo agendamento</h2>
+      <h2>{t('bk.title')}</h2>
 
-      <label htmlFor="client">Cliente</label>
-      <input id="client" type="text" autoComplete="off" value={clientName} onChange={(e) => setClientName(e.target.value)} />
+      <label htmlFor="client">{t('bk.client')}</label>
+      <div className="inline">
+        <select id="client" value={clientId} onChange={(e) => setClientId(e.target.value)}>
+          <option value="">{t('common.select')}</option>
+          {clients.map((c) => <option key={c.id} value={c.id}>{c.name}{c.cpf && ` · ${formatCPF(c.cpf)}`}</option>)}
+        </select>
+        <button type="button" className="ghost" onClick={() => setCreating(true)}>{t('bk.newClient')}</button>
+      </div>
 
-      <label htmlFor="date">Data</label>
-      <input id="date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+      <label htmlFor="date">{t('bk.date')}</label>
+      <input id="date" type="date" min={MIN_DATE} max={MAX_DATE} value={date} onChange={(e) => setDate(e.target.value)} />
 
       <fieldset>
-        <legend>Procedimentos</legend>
-        <p className="hint">Marque mais de um se a cliente quiser. Só ficam ativos os que podem ser feitos juntos.</p>
+        <legend>{t('bk.procs')}</legend>
+        <p className="hint">{t('bk.procsHint')}</p>
+        {procedures.map((p) => (
+          <div key={p.id} className="chips">
+            {p.variants.map((x) => (
+              <label key={x.id} className="chip">
+                <input
+                  type="checkbox"
+                  checked={selected.includes(x.id)}
+                  disabled={!selected.includes(x.id) && chosen.some((c) => c.p.id === p.id || !canCombine(c.p, p))}
+                  onChange={() => toggleVariant(x.id)}
+                />
+                <span>
+                  <i style={{ background: p.color }} />
+                  {tl(p.name)}{x.label !== DEFAULT_LABEL && ` ${tl(x.label).toLowerCase()}`} · {formatDuration(x.durationMin)} · {money(priceOn(x, date))}
+                </span>
+              </label>
+            ))}
+          </div>
+        ))}
+      </fieldset>
+
+      <div className="two">
+        <div>
+          <label htmlFor="employee">{t('bk.employee')}</label>
+          <select id="employee" value={empId} onChange={(e) => setEmployeeId(e.target.value)}>
+            <option value="">{capable.length ? t('common.select') : t('bk.noOne')}</option>
+            {capable.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="time">{t('bk.time')}</label>
+          <select id="time" value={currentTime} onChange={(e) => setTime(e.target.value)} disabled={!empId}>
+            <option value="">{empId ? t('common.select') : '—'}</option>
+            {freeSlots.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>{t('bk.payment')}</legend>
         <div className="chips">
-          {procedures.map((p) => (
-            <label key={p.id} className="chip">
-              <input
-                type="checkbox"
-                checked={selected.includes(p.id)}
-                disabled={!selected.includes(p.id) && chosen.some((c) => !canCombine(c, p))}
-                onChange={() => toggleProcedure(p.id)}
-              />
-              <span><i style={{ background: p.color }} />{p.name} · {formatDuration(p.durationMin)} · {money(p.price)}</span>
+          {([['none', 'bk.payDay'], ['half', 'bk.pay50'], ['full', 'bk.payFull']] as const).map(([key, label]) => (
+            <label key={key} className="chip">
+              <input type="radio" name="deposit" checked={deposit === key} onChange={() => setDeposit(key)} />
+              <span>{t(label)}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
-      <div className="two">
-        <div>
-          <label htmlFor="employee">Profissional</label>
-          <select id="employee" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
-            <option value="">{capable.length ? 'Selecione' : 'Ninguém disponível'}</option>
-            {capable.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="time">Horário</label>
-          <select id="time" value={currentTime} onChange={(e) => setTime(e.target.value)} disabled={!employeeId}>
-            <option value="">{employeeId ? 'Selecione' : '—'}</option>
-            {freeSlots.map((t) => <option key={t} value={t}>{t}</option>)}
-          </select>
-        </div>
-      </div>
+      {items.length > 0 && (
+        <p className="hint">
+          {t('bk.summary', { d: formatDuration(durationMin), total: money(total) })}
+          {deposit === 'half' && t('bk.remaining', { v: money(total - half) })}
+          {deposit === 'none' && t('bk.remaining', { v: money(total) })}
+        </p>
+      )}
 
-      {selected.length > 0 && <p className="hint">Duração: {formatDuration(durationMin)} · Total: {money(total)} · Blocos de {STEP} min</p>}
-
-      {errors.map((msg) => <small key={msg} className="error" role="alert">{msg}</small>)}
+      {errors.map((k) => <small key={k} className="error" role="alert">{t(k)}</small>)}
 
       <div className="actions">
-        <button type="button" className="ghost" onClick={onCancel}>Cancelar</button>
-        <button type="submit" className="primary">Agendar</button>
+        <button type="button" className="ghost" onClick={onCancel}>{t('common.cancel')}</button>
+        <button type="submit" className="primary">{t('bk.submit')}</button>
       </div>
     </form>
   )
