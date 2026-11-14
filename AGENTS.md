@@ -28,3 +28,7 @@ React, Vite, TypeScript e CSS puro. Sem backend e sem bibliotecas extras, a meno
 3. Implementar uma tarefa do board por vez.
 4. Testar as interações com o Playwright (cadastro, exclusão, troca de data, estados vazios, mobile).
 5. Explicar o que mudou e como verificar.
+
+## Referência visual
+https://www.figma.com/design/0UAXn1uIaIWTUDnBj1Tzct/Plataforma-de-agendamento--Community---Copy-?node-id=3-376
+O professor descreve formulário à esquerda e lista por períodos à direita. A grade atual é uma adaptação ainda não autorizada por ele; não marcar fidelidade visual como concluída sem resolver essa diferença.

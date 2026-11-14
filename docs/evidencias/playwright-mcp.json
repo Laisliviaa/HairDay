@@ -1,0 +1,739 @@
+[
+  {
+    "date": "2026-11-14",
+    "server": "@playwright/mcp",
+    "version": "0.0.84",
+    "transport": "MCP SDK InMemoryTransport, servidor oficial",
+    "scope": "cadastro, validacao, periodos, datas, exclusao, desktop/mobile"
+  },
+  {
+    "name": "browser_navigate",
+    "arguments": {
+      "url": "http://127.0.0.1:5191"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.goto('http://127.0.0.1:5191');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-10-453Z.yml)\n### Events\n- New console entries: .playwright-mcp\\console-2026-11-14T19-36-08-906Z.log#L1-L2"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "input[aria-label=\"Data da agenda\"]",
+          "name": "input[aria-label=\"Data da agenda\"]",
+          "type": "textbox",
+          "value": "2026-11-14"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('input[aria-label=\"Data da agenda\"]').fill('2026-11-14');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".dayactions .primary"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.dayactions .primary').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-11-295Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-11-932Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => { if(document.querySelectorAll(\"[role=alert]\").length<2)throw Error(\"Validacao ausente\"); return \"PASS: formulario vazio\"; }"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: formulario vazio\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => { if(document.querySelectorAll(\"[role=alert]\").length<2)throw Error(\"Validacao ausente\"); return \"PASS: formulario vazio\"; }');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] .inline .ghost"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] .inline .ghost').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-13-022Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-13-594Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Nome vazio aceito\");return \"PASS: cliente sem nome rejeitado\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: cliente sem nome rejeitado\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Nome vazio aceito\");return \"PASS: cliente sem nome rejeitado\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] .actions .ghost"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] .actions .ghost').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-14-702Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#client",
+      "values": [
+        "helena"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#client').selectOption('helena');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-14-791Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "#date + fieldset .chips:first-of-type .chip:first-child input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#date + fieldset .chips:first-of-type .chip:first-child input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-15-421Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#employee",
+      "values": [
+        "ana"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#employee').selectOption('ana');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-15-493Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#time",
+      "values": [
+        "09:00"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#time').selectOption('09:00');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-15-554Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "fieldset:has(input[name=deposit]) .chip:first-child input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('fieldset:has(input[name=deposit]) .chip:first-child input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-16-148Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#date",
+          "name": "#date",
+          "type": "textbox",
+          "value": ""
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#date').fill('');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-16-807Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Data vazia aceita\");return \"PASS: data vazia rejeitada\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: data vazia rejeitada\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Data vazia aceita\");return \"PASS: data vazia rejeitada\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#date",
+          "name": "#date",
+          "type": "textbox",
+          "value": "2026-11-14"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#date').fill('2026-11-14');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-17-962Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".dayactions .primary"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.dayactions .primary').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-18-571Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#client",
+      "values": [
+        "helena"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#client').selectOption('helena');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-18-638Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "#date + fieldset .chips:first-of-type .chip:first-child input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#date + fieldset .chips:first-of-type .chip:first-child input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-19-241Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#employee",
+      "values": [
+        "ana"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#employee').selectOption('ana');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-19-316Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#time",
+      "values": [
+        "19:00"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#time').selectOption('19:00');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-19-389Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "fieldset:has(input[name=deposit]) .chip:first-child input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('fieldset:has(input[name=deposit]) .chip:first-child input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-19-967Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-20-566Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".dayactions .primary"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.dayactions .primary').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-21-167Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#client",
+      "values": [
+        "helena"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#client').selectOption('helena');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-21-220Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "#date + fieldset .chips:first-of-type .chip:first-child input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#date + fieldset .chips:first-of-type .chip:first-child input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-21-818Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#employee",
+      "values": [
+        "ana"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#employee').selectOption('ana');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-21-892Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#time",
+      "values": [
+        "13:00"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#time').selectOption('13:00');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-21-949Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "fieldset:has(input[name=deposit]) .chip:first-child input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('fieldset:has(input[name=deposit]) .chip:first-child input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-22-551Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-23-185Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {const cards=[...document.querySelectorAll(\".block\")];if(cards.length!==3||document.querySelectorAll(\".empty\").length!==0)throw Error(\"Periodos incompletos\");const rows=cards.map(e=>e.style.gridRow);if(!rows.some(x=>x.startsWith(\"2 /\"))||!rows.some(x=>x.startsWith(\"10 /\"))||!rows.some(x=>x.startsWith(\"22 /\")))throw Error(\"Posicoes incorretas\");return {result:\"PASS: 3 periodos e ordem visual cronologica\",rows};}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"result\": \"PASS: 3 periodos e ordem visual cronologica\",\n  \"rows\": [\n    \"2 / span 1\",\n    \"22 / span 1\",\n    \"10 / span 1\"\n  ]\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {const cards=[...document.querySelectorAll(\".block\")];if(cards.length!==3||document.querySelectorAll(\".empty\").length!==0)throw Error(\"Periodos incompletos\");const rows=cards.map(e=>e.style.gridRow);if(!rows.some(x=>x.startsWith(\"2 /\"))||!rows.some(x=>x.startsWith(\"10 /\"))||!rows.some(x=>x.startsWith(\"22 /\")))throw Error(\"Posicoes incorretas\");return {result:\"PASS: 3 periodos e ordem visual cronologica\",rows};}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "input[aria-label=\"Data da agenda\"]",
+          "name": "input[aria-label=\"Data da agenda\"]",
+          "type": "textbox",
+          "value": "2026-11-15"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('input[aria-label=\"Data da agenda\"]').fill('2026-11-15');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {const empty=[...document.querySelectorAll(\".empty\")];if(document.querySelectorAll(\".block\").length||empty.length!==3||empty.some(e=>e.textContent!==\"Você ainda não tem agendamentos cadastrados nesse período.\"))throw Error(\"Filtro ou mensagem incorretos\");return \"PASS: data diferente e mensagem exata nos 3 periodos\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: data diferente e mensagem exata nos 3 periodos\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {const empty=[...document.querySelectorAll(\".empty\")];if(document.querySelectorAll(\".block\").length||empty.length!==3||empty.some(e=>e.textContent!==\"Você ainda não tem agendamentos cadastrados nesse período.\"))throw Error(\"Filtro ou mensagem incorretos\");return \"PASS: data diferente e mensagem exata nos 3 periodos\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "input[aria-label=\"Data da agenda\"]",
+          "name": "input[aria-label=\"Data da agenda\"]",
+          "type": "textbox",
+          "value": "2026-11-14"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('input[aria-label=\"Data da agenda\"]').fill('2026-11-14');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_resize",
+    "arguments": {
+      "width": 360,
+      "height": 900
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.setViewportSize({ width: 360, height: 900 });\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(document.documentElement.scrollWidth>innerWidth)throw Error(\"Overflow da pagina\");return {result:\"PASS: largura\",width:innerWidth};}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"result\": \"PASS: largura\",\n  \"width\": 360\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(document.documentElement.scrollWidth>innerWidth)throw Error(\"Overflow da pagina\");return {result:\"PASS: largura\",width:innerWidth};}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_take_screenshot",
+    "arguments": {
+      "filename": "docs/evidencias/mcp-360.png",
+      "fullPage": true,
+      "scale": "css"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n- [Screenshot of full page](docs\\evidencias\\mcp-360.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as docs\\evidencias\\mcp-360.png\nawait page.screenshot({\n  fullPage: true,\n  path: 'docs\\\\evidencias\\\\mcp-360.png',\n  scale: 'css',\n  type: 'png'\n});\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_resize",
+    "arguments": {
+      "width": 1440,
+      "height": 900
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.setViewportSize({ width: 1440, height: 900 });\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(document.documentElement.scrollWidth>innerWidth)throw Error(\"Overflow da pagina\");return {result:\"PASS: largura\",width:innerWidth};}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\n  \"result\": \"PASS: largura\",\n  \"width\": 1440\n}\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(document.documentElement.scrollWidth>innerWidth)throw Error(\"Overflow da pagina\");return {result:\"PASS: largura\",width:innerWidth};}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_take_screenshot",
+    "arguments": {
+      "filename": "docs/evidencias/mcp-1440.png",
+      "fullPage": true,
+      "scale": "css"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n- [Screenshot of full page](docs\\evidencias\\mcp-1440.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as docs\\evidencias\\mcp-1440.png\nawait page.screenshot({\n  fullPage: true,\n  path: 'docs\\\\evidencias\\\\mcp-1440.png',\n  scale: 'css',\n  type: 'png'\n});\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".block:first-of-type .trash"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.block:first-of-type .trash').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Console: 1 errors, 0 warnings\n### Modal state\n- [\"confirm\" dialog with message \"Excluir o agendamento de Helena Souza?\"]: can be handled by browser_handle_dialog\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-14T19-36-25-641Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_handle_dialog",
+    "arguments": {
+      "accept": true
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n- Console: 1 errors, 0 warnings"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(document.querySelectorAll(\".block\").length!==2||document.querySelectorAll(\".empty\").length!==1)throw Error(\"Exclusao incorreta\");return \"PASS: excluiu apenas um e manteve os outros dois\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: excluiu apenas um e manteve os outros dois\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(document.querySelectorAll(\".block\").length!==2||document.querySelectorAll(\".empty\").length!==1)throw Error(\"Exclusao incorreta\");return \"PASS: excluiu apenas um e manteve os outros dois\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_console_messages",
+    "arguments": {
+      "level": "error",
+      "all": true
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\nTotal messages: 4 (Errors: 1, Warnings: 0)\nReturning 1 messages for level \"error\"\n\n[ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap:0"
+        }
+      ]
+    }
+  },
+  {
+    "status": "PASS"
+  }
+]

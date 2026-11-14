@@ -66,17 +66,19 @@ function BookingForm({ initial, onCancel, onSaved }: FormProps) {
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
     const found: Key[] = []
-    if (!clientId) found.push('err.client')
+    const client = clients.find((item) => item.id === clientId)
+    if (!client) found.push('err.client')
     if (!date || !inRange(date)) found.push(date ? 'agenda.range' : 'err.date')
     if (items.length === 0) found.push('err.procs')
     else if (!empId) found.push('err.employee')
     else if (!currentTime) found.push('err.time')
     if (!deposit) found.push('err.payment')
     setErrors(found)
-    if (found.length > 0) return
+    if (found.length > 0 || !client) return
 
     const paid = deposit === 'full' ? total : deposit === 'half' ? round2(total / 2) : 0
-    addAppointment({ clientId, date, time: currentTime, durationMin, total, paid, status: 'scheduled', items, employeeId: empId })
+    const clientName = client.name
+    addAppointment({ clientId, clientName, date, time: currentTime, durationMin, total, paid, status: 'scheduled', items, employeeId: empId })
     onSaved(date)
     onCancel()
   }
