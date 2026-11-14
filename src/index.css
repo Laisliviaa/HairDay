@@ -202,3 +202,35 @@ details summary { cursor: pointer; }
 .daynav button:disabled { opacity: 0.3; cursor: not-allowed; }
 .daynav button:disabled:hover { background: none; color: inherit; }
 @media (max-width: 600px) { .topbar { padding: 12px 16px; } .logo { font-size: 20px; } }
+
+/* Mantém o conteúdo dentro da tela; só as grades têm rolagem horizontal. */
+.content, .page > *, .stack, .form, .two > *, .inline > * { min-width: 0; }
+.topbar nav { flex-wrap: wrap; }
+.daynav { min-width: 0; }
+.daynav button { flex-shrink: 0; }
+.dayactions { max-width: 100%; }
+.dayactions input, .dayactions select { max-width: 100%; }
+.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.daygrid { min-width: 0; }
+.colhead, .empty { min-width: 0; overflow-wrap: anywhere; }
+.empty { max-width: 100%; }
+.panel, .list li { overflow-wrap: anywhere; }
+.actions { flex-wrap: wrap; }
+.chip { max-width: 100%; }
+.chip i { flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .topbar nav { order: 3; width: 100%; gap: 8px 16px; }
+  .daynav { width: 100%; gap: 8px; }
+  .daynav h2 { flex: 1; text-align: center; font-size: 24px; }
+  .dayactions { width: 100%; }
+  .dayactions > * { flex: 1 1 130px; min-width: 0; }
+  .panel, dialog { padding: 16px; }
+  .two { grid-template-columns: 1fr; }
+  .variant-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .inline { flex-wrap: wrap; }
+  .inline > select, .inline > input { flex-basis: 100%; }
+  .empty { font-size: 12px; padding: 6px 8px; border-radius: 12px; }
+}
+
+.stack > *, .list, .list > li { min-width: 0; }
