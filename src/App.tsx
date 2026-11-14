@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { I18nProvider, useI18n, type Lang } from './i18n'
 import { SalonProvider, useSalon } from './context/SalonContext'
+import { ScheduleSidebar } from './components/ScheduleSidebar'
+import { AppointmentList } from './components/AppointmentList'
+import { DateField } from './components/DateField'
 import { DayGrid } from './components/DayGrid'
 import { BookingDialog, type BookingTarget } from './components/BookingDialog'
 import { AppointmentDetail } from './components/AppointmentDetail'
@@ -9,7 +12,7 @@ import { ClientsPage } from './components/ClientsPage'
 import { ProceduresPage } from './components/ProceduresPage'
 import { EmployeesPage } from './components/EmployeesPage'
 import { Flag } from './components/Flag'
-import { MAX_DATE, MIN_DATE, STATUS_KEY, inRange, longDate, shiftDate, today, worksOn } from './utils/helpers'
+import { MAX_DATE, MIN_DATE, STATUS_KEY, inRange, today } from './utils/helpers'
 
 type Tab = 'agenda' | 'clients' | 'procedures' | 'employees'
 
@@ -31,51 +34,53 @@ function Agenda() {
   const { employees } = useSalon()
   const [date, setDate] = useState(today())
   const [filter, setFilter] = useState('')
+  const [view, setView] = useState<'list' | 'grid'>('list')
   const [booking, setBooking] = useState<BookingTarget | null>(null)
   const [detailId, setDetailId] = useState<string | null>(null)
   const [blockOpen, setBlockOpen] = useState(false)
-
   const visible = filter ? employees.filter((e) => e.id === filter) : employees
-  const nobodyWorks = visible.length > 0 && visible.every((e) => !worksOn(e, date))
+
+  function showSaved(savedDate: string) {
+    setDate(savedDate)
+    setFilter('')
+    setView('list')
+  }
 
   return (
-    <>
-      <div className="daybar">
-        <div className="daynav">
-          <button type="button" aria-label={t('agenda.prev')} disabled={date <= MIN_DATE} onClick={() => setDate(shiftDate(date, -1))}>‹</button>
-          <h2>{longDate(date)}</h2>
-          <button type="button" aria-label={t('agenda.next')} disabled={date >= MAX_DATE} onClick={() => setDate(shiftDate(date, 1))}>›</button>
-        </div>
-        <div className="dayactions">
-          <input type="date" aria-label={t('agenda.date')} min={MIN_DATE} max={MAX_DATE} value={date} onChange={(e) => inRange(e.target.value) && setDate(e.target.value)} />
-          <select aria-label={t('agenda.filter')} value={filter} onChange={(e) => setFilter(e.target.value)}>
-            <option value="">{t('agenda.all')}</option>
-            {employees.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
-          </select>
-          <button type="button" className="ghost" onClick={() => setBlockOpen(true)}>{t('agenda.block')}</button>
-          <button type="button" className="primary" onClick={() => setBooking({ date, employeeId: filter, time: '' })}>{t('agenda.new')}</button>
-        </div>
-      </div>
-
-      <ul className="legend" aria-label={t('agenda.legend')}>
-        {(['scheduled', 'confirmed', 'done', 'noshow'] as const).map((s) => (
-          <li key={s}><i data-status={s} />{t(STATUS_KEY[s])}</li>
-        ))}
-        <li><i className="lockkey" />{t('agenda.lock')}</li>
-      </ul>
-
-      {nobodyWorks && <p className="notice" role="status">{t('agenda.allOff')}</p>}
-      {visible.length === 0 ? <p className="notice">{t('agenda.noEmp')}</p> : (
-        <DayGrid date={date} employees={visible} onNew={(employeeId, time) => setBooking({ date, employeeId, time })} onOpen={setDetailId} />
-      )}
-
-      <BookingDialog target={booking} onClose={() => setBooking(null)} onSaved={setDate} />
+    <div className="schedule-layout">
+      <ScheduleSidebar onSaved={showSaved} onAdvanced={(day) => setBooking({ date: day, employeeId: filter, time: '' })} />
+      <section className="schedule-agenda" aria-labelledby="agenda-title">
+        <header className="schedule-header">
+          <div><h2 id="agenda-title">{t('sch.agendaTitle')}</h2><p>{t('sch.agendaSubtitle')}</p></div>
+          <DateField id="agenda-date" label={t('agenda.date')} value={date} min={MIN_DATE} max={MAX_DATE}
+            onChange={(value) => { if (inRange(value)) setDate(value) }} />
+        </header>
+        {view === 'list' ? <AppointmentList date={date} employeeId={filter} onOpen={setDetailId} /> : (
+          visible.length ? <DayGrid date={date} employees={visible}
+            onNew={(employeeId, time) => setBooking({ date, employeeId, time })} onOpen={setDetailId} /> : <p>{t('agenda.noEmp')}</p>
+        )}
+        <details className="schedule-extra agenda-extra">
+          <summary>{t('sch.agendaOptions')}</summary>
+          <div className="dayactions">
+            <select aria-label={t('agenda.filter')} value={filter} onChange={(e) => setFilter(e.target.value)}>
+              <option value="">{t('agenda.all')}</option>
+              {employees.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
+            </select>
+            <button type="button" className="ghost" onClick={() => setView(view === 'list' ? 'grid' : 'list')}>{t(view === 'list' ? 'sch.grid' : 'sch.list')}</button>
+            <button type="button" className="ghost" onClick={() => setBlockOpen(true)}>{t('agenda.block')}</button>
+          </div>
+          {view === 'grid' && <ul className="legend" aria-label={t('agenda.legend')}>
+            {(['scheduled', 'confirmed', 'done', 'noshow'] as const).map((s) => <li key={s}><i data-status={s} />{t(STATUS_KEY[s])}</li>)}
+            <li><i className="lockkey" />{t('agenda.lock')}</li>
+          </ul>}
+        </details>
+      </section>
+      <BookingDialog target={booking} onClose={() => setBooking(null)} onSaved={showSaved} />
       <AppointmentDetail id={detailId} onClose={() => setDetailId(null)} />
       <BlockDialog open={blockOpen} date={date} employeeId={filter} onClose={() => setBlockOpen(false)} />
-    </>
+    </div>
   )
 }
-
 function Shell() {
   const { t, lang, setLang, theme, toggleTheme } = useI18n()
   const [tab, setTab] = useState<Tab>('agenda')
@@ -83,7 +88,7 @@ function Shell() {
   return (
     <>
       <header className="topbar">
-        <h1 className="logo"><span className="pole" aria-hidden="true" />HairDay</h1>
+        <h1 className="logo">HairDay<span className="logo-scissors"><img src="/figma/scissors.svg" alt="" /></span></h1>
         <nav aria-label={t('app.sections')}>
           {TABS.map((x) => (
             <button key={x.key} type="button" aria-current={tab === x.key ? 'page' : undefined} onClick={() => setTab(x.key)}>
@@ -109,7 +114,7 @@ function Shell() {
         </div>
       </header>
 
-      <main className="content">
+      <main className={tab === 'agenda' ? 'content schedule-content' : 'content'}>
         {tab === 'agenda' && <Agenda />}
         {tab === 'clients' && <ClientsPage />}
         {tab === 'procedures' && <ProceduresPage />}

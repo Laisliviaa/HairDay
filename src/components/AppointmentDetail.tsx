@@ -41,7 +41,7 @@ function Detail({ id, onClose }: { id: string; onClose: () => void }) {
     <div className="form">
       <h2>{client.name}</h2>
       <p className="hint">{formatPhone(client.phone)}{client.email && ` · ${client.email}`}</p>
-      <p>{servicesText(a, procedures, tl)}</p>
+      <p>{a.items.length ? servicesText(a, procedures, tl) : t('sch.simple')}</p>
       <p className="hint">{longDate(a.date)} · {a.time}–{toTime(toMinutes(a.time) + a.durationMin)}{employee && ` · ${employee.name}`}</p>
 
       <label htmlFor="status">{t('dt.status')}</label>
@@ -49,7 +49,7 @@ function Detail({ id, onClose }: { id: string; onClose: () => void }) {
         {(Object.keys(STATUS_KEY) as AppointmentStatus[]).map((key) => <option key={key} value={key}>{t(STATUS_KEY[key])}</option>)}
       </select>
 
-      <fieldset className="paybox">
+      {a.items.length > 0 && <fieldset className="paybox">
         <legend>{t('dt.payment')} · <span className={`pill ${pay}`}>{t(PAY_KEY[pay])}</span></legend>
         <p>{t('dt.totals', { total: money(a.total), paid: money(a.paid), rest: money(a.total - a.paid) })}</p>
         {a.total - a.paid > 0 && (
@@ -60,15 +60,15 @@ function Detail({ id, onClose }: { id: string; onClose: () => void }) {
           </div>
         )}
         {error && <small className="error" role="alert">{t('dt.errValue')}</small>}
-      </fieldset>
+      </fieldset>}
 
       <fieldset>
         <legend>{t('dt.notify')}</legend>
         <div className="chips">
-          <a className="ghost" href={whatsappLink(client, 'confirm', a, procedures, t, tl, employee)} target="_blank" rel="noreferrer">{t('dt.waConfirm')}</a>
-          <a className="ghost" href={whatsappLink(client, 'reminder', a, procedures, t, tl, employee)} target="_blank" rel="noreferrer">{t('dt.waReminder')}</a>
+          {client.phone && <a className="ghost" href={whatsappLink(client, 'confirm', a, procedures, t, tl, employee)} target="_blank" rel="noreferrer">{t('dt.waConfirm')}</a>}
+          {client.phone && <a className="ghost" href={whatsappLink(client, 'reminder', a, procedures, t, tl, employee)} target="_blank" rel="noreferrer">{t('dt.waReminder')}</a>}
           <button type="button" className="ghost" onClick={() => downloadInvite(a, client, procedures, tl, employee)}>{t('dt.ics')}</button>
-          <a className="ghost" href={mailtoLink(a, client, procedures, t, tl, employee)}>{t('dt.email')}</a>
+          {client.email && <a className="ghost" href={mailtoLink(a, client, procedures, t, tl, employee)}>{t('dt.email')}</a>}
         </div>
         <p className="hint">{t('dt.emailHint')}</p>
       </fieldset>

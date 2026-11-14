@@ -16,10 +16,11 @@ export const DEFAULT_LABEL = '@v.default'
 
 export const SWATCHES = ['#F4A6C0', '#78CFC0', '#F5C451', '#B9A6F2', '#A5CF74', '#84B4F2', '#F59B7B', '#D9D9E3']
 
-// o salão fecha às 21h: o último atendimento precisa terminar até lá
+// O Figma oferece 21h como início. Uma reserva básica dura até 22h.
 export const OPEN = 9 * 60
-export const CLOSE = 21 * 60
+export const CLOSE = 22 * 60
 export const STEP = 30
+export const BOOKING_TIMES = Array.from({ length: 13 }, (_, index) => `${String(index + 9).padStart(2, '0')}:00`)
 export const EPOCH = '2000-01' // início de vigência do preço original
 export const MIN_DATE = '2020-01-01'
 export const MAX_DATE = '2030-12-31'
@@ -31,7 +32,7 @@ export const toMinutes = (time: string) => {
 export const toTime = (min: number) =>
   `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`
 
-// 09:00, 09:30 ... 20:30 (cada linha da agenda)
+// Linhas de meia hora da grade opcional; o formulário oferece BOOKING_TIMES.
 export const SLOT_STARTS: string[] = Array.from(
   { length: (CLOSE - STEP - OPEN) / STEP + 1 },
   (_, i) => toTime(OPEN + i * STEP),

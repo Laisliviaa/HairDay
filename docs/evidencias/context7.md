@@ -16,3 +16,7 @@ Consulta real feita nesta revisão pelo Codex, não reconstruída como se tivess
 - Appointment passou a guardar também clientName, como solicitado no modelo mínimo do enunciado, sem perder a relação clientId.
 
 Fontes retornadas: [React — arrays no estado](https://react.dev/learn/updating-arrays-in-state), [useState](https://react.dev/reference/react/useState), [TypeScript](https://react.dev/learn/typescript).
+
+## Atualização visual
+
+A estrutura principal foi adaptada ao frame 1164:390 da cópia acessível do Figma. O teste atualizado está em playwright-mcp.json e as imagens principais são mcp-1440.png e mcp-360.png. Os registros de revisão anteriores descrevem o estado antigo da grade e devem ser lidos como histórico.
