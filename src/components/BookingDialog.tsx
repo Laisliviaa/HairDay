@@ -3,7 +3,7 @@ import { useSalon } from '../context/SalonContext'
 import { useI18n, type Key } from '../i18n'
 import type { ServiceItem } from '../types/salon'
 import {
-  CLOSE, DEFAULT_LABEL, MAX_DATE, MIN_DATE, SLOT_STARTS, blockMinutes, canCombine, formatCPF, formatDuration,
+  BOOKING_TIMES, CLOSE, DEFAULT_LABEL, MAX_DATE, MIN_DATE, blockMinutes, canCombine, formatCPF, formatDuration,
   inRange, money, priceOn, round2, toMinutes, worksOn,
 } from '../utils/helpers'
 import { ClientForm } from './ClientForm'
@@ -56,7 +56,7 @@ function BookingForm({ initial, onCancel, onSaved }: FormProps) {
     return !locks.some((b) => start < toMinutes(b.end) && toMinutes(b.start) < end)
   }
 
-  const freeSlots = empId ? SLOT_STARTS.filter(isFree) : []
+  const freeSlots = empId ? BOOKING_TIMES.filter(isFree) : []
   const currentTime = freeSlots.includes(time) ? time : ''
 
   function toggleVariant(id: string) {

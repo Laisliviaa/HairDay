@@ -6,7 +6,7 @@ type T = (key: Key, params?: Record<string, string | number>) => string
 type TL = (label: string) => string
 
 export const servicesText = (a: Appointment, procedures: Procedure[], tl: TL) =>
-  a.items.map((i) => serviceLabel(procedures, i, tl)).join(' + ')
+  a.items.length ? a.items.map((i) => serviceLabel(procedures, i, tl)).join(' + ') : tl('@sch.simple')
 
 function whatText(a: Appointment, procedures: Procedure[], t: T, tl: TL, employee?: Employee) {
   const when = t('msg.when', { date: longDate(a.date), time: a.time })
