@@ -30,3 +30,15 @@ npm run dev
 
 ## Estrutura
 `src/components`, `src/context`, `src/types`, `src/utils`
+
+## Referência e evidências
+
+- [Figma do professor](https://www.figma.com/design/0UAXn1uIaIWTUDnBj1Tzct/Plataforma-de-agendamento--Community---Copy-?node-id=3-376)
+- [Checklist de entrega e pendências](docs/CHECKLIST-ENTREGA.md)
+- [Consulta Context7 MCP](docs/evidencias/context7.md)
+- [Registro de testes Playwright MCP](docs/evidencias/playwright-mcp.json)
+- [Captura desktop](docs/evidencias/mcp-1440.png) e [captura mobile](docs/evidencias/mcp-360.png)
+
+Para conferir a compilação: `npm run build`. Para analisar o código: `npm run lint`.
+
+Os dados ficam em memória: recarregar a página reinicia cadastros e agendamentos. O CPF é opcional; o telefone é obrigatório nesta versão. A estrutura atual de grade/modal ainda precisa ser alinhada à referência do professor (formulário lateral e lista por períodos); consulte o checklist antes da entrega.

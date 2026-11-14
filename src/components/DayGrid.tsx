@@ -106,7 +106,7 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
           const c = employees.findIndex((e) => e.id === a.employeeId)
           const client = clients.find((x) => x.id === a.clientId)
           const color = procedures.find((p) => p.id === a.items[0]?.procedureId)?.color ?? '#D9D9E3'
-          const name = client?.name ?? '?'
+          const name = client?.name ?? a.clientName
           const end = toTime(toMinutes(a.time) + a.durationMin)
           return (
             <article

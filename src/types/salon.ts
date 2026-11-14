@@ -43,6 +43,7 @@ export type ServiceItem = { procedureId: string; variantId: string }
 export type Appointment = {
   id: string
   clientId: string
+  clientName: string // nome registrado no momento do agendamento
   date: string // AAAA-MM-DD
   time: string // HH:MM
   durationMin: number
