@@ -42,7 +42,7 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
         className="daygrid"
         style={{
           gridTemplateColumns: `34px 52px repeat(${employees.length}, minmax(160px, 1fr))`,
-          gridTemplateRows: `auto repeat(${SLOT_STARTS.length}, 42px)`,
+          gridTemplateRows: `auto repeat(${SLOT_STARTS.length}, 56px)`,
         }}
       >
         {employees.map((emp, c) => {
