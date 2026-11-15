@@ -5,18 +5,20 @@ import { downloadInvite, mailtoLink, servicesText, whatsappLink } from '../utils
 import type { AppointmentStatus } from '../types/salon'
 import { PAY_KEY, STATUS_KEY, formatPhone, longDate, money, paymentStatus, round2, toMinutes, toTime } from '../utils/helpers'
 import { Modal } from './Modal'
+import { RescheduleForm } from './RescheduleForm'
 
-type Props = { id: string | null; onClose: () => void }
+type Props = { id: string | null; onClose: () => void; onRescheduled: (date: string) => void }
 
-export function AppointmentDetail({ id, onClose }: Props) {
-  return <Modal open={!!id} onClose={onClose}>{id && <Detail id={id} onClose={onClose} />}</Modal>
+export function AppointmentDetail({ id, onClose, onRescheduled }: Props) {
+  return <Modal open={!!id} onClose={onClose}>{id && <Detail key={id} id={id} onClose={onClose} onRescheduled={onRescheduled} />}</Modal>
 }
 
-function Detail({ id, onClose }: { id: string; onClose: () => void }) {
+function Detail({ id, onClose, onRescheduled }: Props & { id: string }) {
   const { t, tl } = useI18n()
   const { appointments, clients, procedures, employees, updateAppointment, removeAppointment } = useSalon()
   const [amount, setAmount] = useState('')
   const [error, setError] = useState(false)
+  const [rescheduling, setRescheduling] = useState(false)
 
   const a = appointments.find((x) => x.id === id)
   const client = clients.find((c) => c.id === a?.clientId)
@@ -36,6 +38,9 @@ function Detail({ id, onClose }: { id: string; onClose: () => void }) {
     removeAppointment(a.id)
     onClose()
   }
+
+  if (rescheduling) return <RescheduleForm appointment={a} onCancel={() => setRescheduling(false)}
+    onSaved={(date) => { onRescheduled(date); onClose() }} />
 
   return (
     <div className="form">
@@ -74,6 +79,8 @@ function Detail({ id, onClose }: { id: string; onClose: () => void }) {
       </fieldset>
 
       <div className="actions">
+        {(a.status === 'scheduled' || a.status === 'confirmed') &&
+          <button type="button" className="ghost" onClick={() => setRescheduling(true)}>{t('rsch.title')}</button>}
         <button type="button" className="danger" onClick={remove}>{t('dt.delete')}</button>
         <button type="button" className="primary" onClick={onClose}>{t('common.close')}</button>
       </div>

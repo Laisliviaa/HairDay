@@ -76,7 +76,7 @@ function Agenda() {
         </details>
       </section>
       <BookingDialog target={booking} onClose={() => setBooking(null)} onSaved={showSaved} />
-      <AppointmentDetail id={detailId} onClose={() => setDetailId(null)} />
+      <AppointmentDetail id={detailId} onClose={() => setDetailId(null)} onRescheduled={showSaved} />
       <BlockDialog open={blockOpen} date={date} employeeId={filter} onClose={() => setBlockOpen(false)} />
     </div>
   )

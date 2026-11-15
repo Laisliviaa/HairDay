@@ -1,0 +1,703 @@
+[
+  {
+    "date": "2026-11-14",
+    "server": "@playwright/mcp",
+    "version": "0.0.84",
+    "transport": "MCP SDK InMemoryTransport, servidor oficial",
+    "scope": "cadastro, validacao, periodos, datas, exclusao, desktop/mobile"
+  },
+  {
+    "name": "browser_navigate",
+    "arguments": {
+      "url": "http://127.0.0.1:5191"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.goto('http://127.0.0.1:5191');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-06-674Z.yml)\n### Events\n- New console entries: .playwright-mcp\\console-2026-11-15T04-19-05-983Z.log#L1"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#schedule-date",
+          "name": "#schedule-date",
+          "type": "textbox",
+          "value": "2026-11-14"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#schedule-date').fill('2026-11-14');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".time-options button:has-text(\"13:00\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.time-options button:has-text(\"13:00\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-07-348Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#schedule-client",
+          "name": "#schedule-client",
+          "type": "textbox",
+          "value": "Outro Cliente"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#schedule-client').fill('Outro Cliente');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".schedule-submit"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.schedule-submit').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-08-579Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".schedule-sidebar summary"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.schedule-sidebar summary').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-09-167Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".schedule-sidebar .ghost"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.schedule-sidebar .ghost').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-09-772Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#client",
+      "values": [
+        "helena"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#client').selectOption('helena');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-09-841Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "#date + fieldset .chips:first-of-type .chip:nth-child(2) input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#date + fieldset .chips:first-of-type .chip:nth-child(2) input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-10-423Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#employee",
+      "values": [
+        "ana"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#employee').selectOption('ana');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-10-509Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#time",
+      "values": [
+        "09:00"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#time').selectOption('09:00');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-10-572Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "fieldset:has(input[name=deposit]) .chip:last-child input"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('fieldset:has(input[name=deposit]) .chip:last-child input').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-11-166Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-11-756Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".agenda-extra summary"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.agenda-extra summary').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-12-361Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".agenda-extra button:has-text(\"Bloquear\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.agenda-extra button:has-text(\"Bloquear\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-12-943Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-13-517Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".appointment-name:has-text(\"Helena Souza\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.appointment-name:has-text(\"Helena Souza\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-14-107Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button:has-text(\"Reagendar\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button:has-text(\"Reagendar\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-14-684Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {const options=[...document.querySelectorAll(\"#reschedule-time option\")].map(e=>e.value);if(!options.includes(\"09:00\")||options.includes(\"12:00\")||options.includes(\"13:00\"))throw Error(\"Conflito ou autoexclusao incorretos\");return \"PASS: horario atual permitido; bloqueio e outra reserva rejeitados\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: horario atual permitido; bloqueio e outra reserva rejeitados\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {const options=[...document.querySelectorAll(\"#reschedule-time option\")].map(e=>e.value);if(!options.includes(\"09:00\")||options.includes(\"12:00\")||options.includes(\"13:00\"))throw Error(\"Conflito ou autoexclusao incorretos\");return \"PASS: horario atual permitido; bloqueio e outra reserva rejeitados\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#reschedule-time",
+      "values": [
+        "10:00"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#reschedule-time').selectOption('10:00');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-15-282Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button:has-text(\"Cancelar\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button:has-text(\"Cancelar\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-15-856Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button:has-text(\"Fechar\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button:has-text(\"Fechar\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-16-462Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(document.querySelector(\".appointment-row time\").textContent!==\"09:00\")throw Error(\"Cancelar alterou dados\");return \"PASS: cancelar preserva horario\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: cancelar preserva horario\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(document.querySelector(\".appointment-row time\").textContent!==\"09:00\")throw Error(\"Cancelar alterou dados\");return \"PASS: cancelar preserva horario\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".appointment-name:has-text(\"Helena Souza\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.appointment-name:has-text(\"Helena Souza\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-17-616Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button:has-text(\"Reagendar\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button:has-text(\"Reagendar\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-18-208Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#reschedule-date",
+          "name": "#reschedule-date",
+          "type": "textbox",
+          "value": "2026-11-16"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#reschedule-date').fill('2026-11-16');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(document.querySelectorAll(\"#reschedule-time option\").length!==1)throw Error(\"Folga ignorada\");return \"PASS: folga do profissional bloqueada\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: folga do profissional bloqueada\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(document.querySelectorAll(\"#reschedule-time option\").length!==1)throw Error(\"Folga ignorada\");return \"PASS: folga do profissional bloqueada\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-19-347Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Horario vazio aceito\");return \"PASS: validacao de horario\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: validacao de horario\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Horario vazio aceito\");return \"PASS: validacao de horario\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#reschedule-date",
+          "name": "#reschedule-date",
+          "type": "textbox",
+          "value": ""
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#reschedule-date').fill('');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-20-476Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Data vazia aceita\");return \"PASS: validacao de data\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: validacao de data\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(!document.querySelector(\"[role=alert]\"))throw Error(\"Data vazia aceita\");return \"PASS: validacao de data\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#reschedule-date",
+          "name": "#reschedule-date",
+          "type": "textbox",
+          "value": "2026-11-15"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#reschedule-date').fill('2026-11-15');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_select_option",
+    "arguments": {
+      "target": "#reschedule-time",
+      "values": [
+        "10:00"
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#reschedule-time').selectOption('10:00');\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-21-072Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_resize",
+    "arguments": {
+      "width": 360,
+      "height": 800
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.setViewportSize({ width: 360, height: 800 });\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {const d=document.querySelector(\"dialog[open]\");if(d.scrollWidth>d.clientWidth||document.documentElement.scrollWidth>innerWidth)throw Error(\"Overflow mobile\");return \"PASS: formulario mobile\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: formulario mobile\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {const d=document.querySelector(\"dialog[open]\");if(d.scrollWidth>d.clientWidth||document.documentElement.scrollWidth>innerWidth)throw Error(\"Overflow mobile\");return \"PASS: formulario mobile\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_take_screenshot",
+    "arguments": {
+      "filename": "docs/evidencias/reagendar-mobile.png",
+      "fullPage": true,
+      "scale": "css"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n- [Screenshot of full page](docs\\evidencias\\reagendar-mobile.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as docs\\evidencias\\reagendar-mobile.png\nawait page.screenshot({\n  fullPage: true,\n  path: 'docs\\\\evidencias\\\\reagendar-mobile.png',\n  scale: 'css',\n  type: 'png'\n});\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button[type=submit]"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button[type=submit]').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-22-285Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(document.querySelector(\"#agenda-date\").value!==\"2026-11-15\"||document.querySelectorAll(\".appointment-row\").length!==1||document.querySelector(\".appointment-row time\").textContent!==\"10:00\")throw Error(\"Reagendamento nao atualizou agenda\");return \"PASS: nova data selecionada e horario atualizado\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: nova data selecionada e horario atualizado\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(document.querySelector(\"#agenda-date\").value!==\"2026-11-15\"||document.querySelectorAll(\".appointment-row\").length!==1||document.querySelector(\".appointment-row time\").textContent!==\"10:00\")throw Error(\"Reagendamento nao atualizou agenda\");return \"PASS: nova data selecionada e horario atualizado\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": ".appointment-name:has-text(\"Helena Souza\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('.appointment-name:has-text(\"Helena Souza\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-23-398Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {const text=document.querySelector(\"dialog[open]\").textContent;if(!text.includes(\"90,00\")||!text.includes(\"Pago total\")||!text.includes(\"Corte\")||!text.includes(\"Ana\"))throw Error(\"Dados nao preservados\");return \"PASS: cliente profissional procedimento e pagamento preservados\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: cliente profissional procedimento e pagamento preservados\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {const text=document.querySelector(\"dialog[open]\").textContent;if(!text.includes(\"90,00\")||!text.includes(\"Pago total\")||!text.includes(\"Corte\")||!text.includes(\"Ana\"))throw Error(\"Dados nao preservados\");return \"PASS: cliente profissional procedimento e pagamento preservados\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_click",
+    "arguments": {
+      "target": "dialog[open] button:has-text(\"Fechar\")"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('dialog[open] button:has-text(\"Fechar\")').click();\n```\n### Page\n- Page URL: http://127.0.0.1:5191/\n- Page Title: HairDay\n### Snapshot\n- [Snapshot](.playwright-mcp\\page-2026-11-15T04-19-24-533Z.yml)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_fill_form",
+    "arguments": {
+      "fields": [
+        {
+          "target": "#agenda-date",
+          "name": "#agenda-date",
+          "type": "textbox",
+          "value": "2026-11-14"
+        }
+      ]
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Ran Playwright code\n```js\nawait page.locator('#agenda-date').fill('2026-11-14');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_evaluate",
+    "arguments": {
+      "function": "() => {if(document.querySelectorAll(\".appointment-row\").length!==1||!document.querySelector(\".appointment-row\").textContent.includes(\"Outro Cliente\"))throw Error(\"Registro antigo duplicado ou outro alterado\");return \"PASS: antigo horario liberado e outra reserva preservada\";}"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n\"PASS: antigo horario liberado e outra reserva preservada\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => {if(document.querySelectorAll(\".appointment-row\").length!==1||!document.querySelector(\".appointment-row\").textContent.includes(\"Outro Cliente\"))throw Error(\"Registro antigo duplicado ou outro alterado\");return \"PASS: antigo horario liberado e outra reserva preservada\";}');\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "browser_console_messages",
+    "arguments": {
+      "level": "error",
+      "all": true
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\nTotal messages: 3 (Errors: 0, Warnings: 0)\nReturning 0 messages for level \"error\"\n"
+        }
+      ]
+    }
+  },
+  {
+    "status": "PASS"
+  }
+]
