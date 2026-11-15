@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useSalon } from '../context/SalonContext'
 import { useI18n } from '../i18n'
 import type { Employee, PeriodKey } from '../types/salon'
@@ -37,9 +38,9 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
   }
 
   return (
-    <div className="daygrid-wrap">
+    <div className={ui.daygridWrap}>
       <div
-        className="daygrid"
+        className={ui.daygrid}
         style={{
           gridTemplateColumns: `34px 52px repeat(${employees.length}, minmax(160px, 1fr))`,
           gridTemplateRows: `auto repeat(${SLOT_STARTS.length}, 56px)`,
@@ -49,7 +50,7 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
           const works = worksOn(emp, date)
           const label = !works ? t('grid.off') : emp.available ? t('grid.available') : t('grid.unavailable')
           return (
-            <div key={emp.id} className={works && emp.available ? 'colhead' : 'colhead off'} style={{ gridRow: 1, gridColumn: c + 3 }}>
+            <div key={emp.id} className={works && emp.available ? ui.colhead : `${ui.colhead} ${ui.off}`} style={{ gridRow: 1, gridColumn: c + 3 }}>
               <strong>{emp.name}</strong>
               <small>{label}</small>
             </div>
@@ -57,13 +58,13 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
         })}
 
         {PERIODS.map((p) => (
-          <div key={p.key} className="band" style={{ gridRow: rowsOf(p.key), gridColumn: 1 }}>
+          <div key={p.key} className={ui.band} style={{ gridRow: rowsOf(p.key), gridColumn: 1 }}>
             <span>{t(PERIOD_KEY[p.key])} {p.range}</span>
           </div>
         ))}
 
         {SLOT_STARTS.map((s, i) => (
-          <div key={s} className={`tick${s.endsWith(':00') ? ' hour' : ''}${isBandStart(i) ? ' start' : ''}`} style={{ gridRow: i + 2, gridColumn: 2 }}>
+          <div key={s} className={`${ui.tick} ${s.endsWith(':00') ? ui.hour : ''} ${isBandStart(i) ? ui.start : ''}`} style={{ gridRow: i + 2, gridColumn: 2 }}>
             {s.endsWith(':00') ? `${s.slice(0, 2)}h` : ''}
           </div>
         ))}
@@ -74,7 +75,7 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
               key={`${emp.id}-${s}`}
               type="button"
               tabIndex={-1}
-              className={`cell${s.endsWith(':00') ? ' hour' : ''}${isBandStart(i) ? ' start' : ''}`}
+              className={`${ui.cell} ${s.endsWith(':00') ? ui.hour : ''} ${isBandStart(i) ? ui.start : ''}`}
               disabled={!emp.available || !worksOn(emp, date)}
               aria-label={t('grid.book', { name: emp.name, time: s })}
               style={{ gridRow: i + 2, gridColumn: c + 3 }}
@@ -84,7 +85,7 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
         )}
 
         {PERIODS.filter((p) => countByPeriod[p.key] === 0).map((p) => (
-          <p key={p.key} className="empty" style={{ gridRow: rowsOf(p.key), gridColumn: '3 / -1' }}>
+          <p key={p.key} className={ui.empty} style={{ gridRow: rowsOf(p.key), gridColumn: '3 / -1' }}>
             {t('grid.empty')}
           </p>
         ))}
@@ -95,9 +96,9 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
           const to = Math.min(SLOT_STARTS.length, (toMinutes(b.end) - toMinutes(SLOT_STARTS[0])) / STEP)
           const reason = t(REASON_KEY[b.reason])
           return (
-            <div key={b.id} className="lock" style={{ gridRow: `${from + 2} / ${to + 2}`, gridColumn: c + 3 }}>
+            <div key={b.id} className={ui.lock} style={{ gridRow: `${from + 2} / ${to + 2}`, gridColumn: c + 3 }}>
               <span>{reason} · {b.start}–{b.end}</span>
-              <button type="button" className="trash" aria-label={t('grid.removeLock', { reason })} onClick={() => window.confirm(t('grid.confirmLock')) && removeBlock(b.id)}>×</button>
+              <button type="button" className={ui.trash} aria-label={t('grid.removeLock', { reason })} onClick={() => window.confirm(t('grid.confirmLock')) && removeBlock(b.id)}>×</button>
             </div>
           )
         })}
@@ -111,16 +112,16 @@ export function DayGrid({ date, employees, onNew, onOpen }: Props) {
           return (
             <article
               key={a.id}
-              className="block"
+              className={ui.block}
               data-status={a.status}
               style={{ gridRow: `${rowOf(a.time) + 2} / span ${blockMinutes(a.durationMin) / STEP}`, gridColumn: c + 3, background: color }}
             >
-              <button type="button" className="open" onClick={() => onOpen(a.id)} aria-label={t('grid.open', { name })}>
+              <button type="button" className={ui.open} onClick={() => onOpen(a.id)} aria-label={t('grid.open', { name })}>
                 <strong>{name}</strong>
                 <small>{servicesText(a, procedures, tl)} · {a.time}–{end}</small>
                 <small>{t(STATUS_KEY[a.status])} · {t(PAY_KEY[paymentStatus(a.total, a.paid)])}</small>
               </button>
-              <button type="button" className="trash" aria-label={t('grid.del', { name })} onClick={() => window.confirm(t('grid.confirmDel', { name })) && removeAppointment(a.id)}>
+              <button type="button" className={ui.trash} aria-label={t('grid.del', { name })} onClick={() => window.confirm(t('grid.confirmDel', { name })) && removeAppointment(a.id)}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6M14 10v6" />
                 </svg>

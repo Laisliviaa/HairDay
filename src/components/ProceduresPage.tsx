@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n, type Key } from '../i18n'
@@ -58,32 +59,32 @@ export function ProceduresPage() {
   }
 
   return (
-    <div className="page">
-      <div className="stack">
-        <form className="form panel" onSubmit={handleSubmit} noValidate>
+    <div className={ui.page}>
+      <div className={ui.stack}>
+        <form className={`${ui.form} ${ui.panel}`} onSubmit={handleSubmit} noValidate>
           <h2>{t('pr.new')}</h2>
           <label htmlFor="p-name">{t('pr.name')}</label>
           <input id="p-name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
 
           <fieldset>
             <legend>{t('pr.timeValue')}</legend>
-            <p className="hint">{t('pr.timeHint')}</p>
+            <p className={ui.hint}>{t('pr.timeHint')}</p>
             {rows.map((r) => (
-              <div key={r.key} className="variant-row">
+              <div key={r.key} className={ui.variantRow}>
                 <input type="text" placeholder={t('pr.variant')} aria-label={t('pr.variantLabel')} value={r.label} onChange={(e) => updateRow(r.key, { label: e.target.value })} />
                 <input type="number" min="5" step="5" placeholder={t('pr.min')} aria-label={t('pr.minLabel')} value={r.minutes} onChange={(e) => updateRow(r.key, { minutes: e.target.value })} />
                 <input type="text" inputMode="decimal" placeholder="R$" aria-label={t('pr.valueLabel')} value={r.price} onChange={(e) => updateRow(r.key, { price: e.target.value })} />
-                {rows.length > 1 && <button type="button" className="ghost" aria-label={t('pr.removeVariant')} onClick={() => setRows((prev) => prev.filter((x) => x.key !== r.key))}>×</button>}
+                {rows.length > 1 && <button type="button" className={ui.ghost} aria-label={t('pr.removeVariant')} onClick={() => setRows((prev) => prev.filter((x) => x.key !== r.key))}>×</button>}
               </div>
             ))}
-            <button type="button" className="ghost" onClick={() => setRows((prev) => [...prev, newRow()])}>{t('pr.addVariant')}</button>
+            <button type="button" className={ui.ghost} onClick={() => setRows((prev) => [...prev, newRow()])}>{t('pr.addVariant')}</button>
           </fieldset>
 
           <fieldset>
             <legend>{t('pr.color')}</legend>
-            <div className="swatches">
+            <div className={ui.swatches}>
               {SWATCHES.map((c) => (
-                <label key={c} className="swatch">
+                <label key={c} className={ui.swatch}>
                   <input type="radio" name="color" checked={color === c} onChange={() => setColor(c)} aria-label={t('pr.colorOf', { c })} />
                   <span style={{ background: c }} />
                 </label>
@@ -93,28 +94,28 @@ export function ProceduresPage() {
 
           <fieldset>
             <legend>{t('pr.combine')}</legend>
-            <div className="chips">
+            <div className={ui.chips}>
               {procedures.map((p) => (
-                <label key={p.id} className="chip">
+                <label key={p.id} className={ui.chip}>
                   <input type="checkbox" checked={combinesWith.includes(p.id)} onChange={() => setCombinesWith((prev) => (prev.includes(p.id) ? prev.filter((x) => x !== p.id) : [...prev, p.id]))} />
                   <span><i style={{ background: p.color }} />{tl(p.name)}</span>
                 </label>
               ))}
             </div>
           </fieldset>
-          {error && <small className="error" role="alert">{t(error)}</small>}
-          <button type="submit" className="primary">{t('pr.save')}</button>
+          {error && <small className={ui.error} role="alert">{t(error)}</small>}
+          <button type="submit" className={ui.primary}>{t('pr.save')}</button>
         </form>
 
-        <form className="form panel" onSubmit={handleRaise} noValidate>
+        <form className={`${ui.form} ${ui.panel}`} onSubmit={handleRaise} noValidate>
           <h2>{t('pr.raiseTitle')}</h2>
-          <p className="hint">{t('pr.raiseHint')}</p>
+          <p className={ui.hint}>{t('pr.raiseHint')}</p>
           <label htmlFor="r-var">{t('pr.raiseProc')}</label>
           <select id="r-var" value={raiseVariant} onChange={(e) => setRaiseVariant(e.target.value)}>
             <option value="">{t('common.select')}</option>
             {allVariants.map(({ p, v }) => <option key={v.id} value={v.id}>{tl(p.name)}{v.label !== DEFAULT_LABEL && ` · ${tl(v.label)}`} {t('pr.today', { v: money(priceOn(v, today())) })}</option>)}
           </select>
-          <div className="two">
+          <div className={ui.two}>
             <div>
               <label htmlFor="r-price">{t('pr.newValue')}</label>
               <input id="r-price" type="text" inputMode="decimal" value={raisePrice} onChange={(e) => setRaisePrice(e.target.value)} />
@@ -124,27 +125,27 @@ export function ProceduresPage() {
               <input id="r-month" type="month" min={thisMonth()} max={MAX_DATE.slice(0, 7)} value={raiseMonth} onChange={(e) => setRaiseMonth(e.target.value)} />
             </div>
           </div>
-          {raiseError && <small className="error" role="alert">{t(raiseError)}</small>}
-          <button type="submit" className="primary">{t('pr.raiseSubmit')}</button>
+          {raiseError && <small className={ui.error} role="alert">{t(raiseError)}</small>}
+          <button type="submit" className={ui.primary}>{t('pr.raiseSubmit')}</button>
         </form>
       </div>
 
       <div>
-        {notice && <p className="notice" role="alert">{notice}</p>}
-        <ul className="list">
+        {notice && <p className={ui.notice} role="alert">{notice}</p>}
+        <ul className={ui.list}>
           {procedures.map((p) => (
             <li key={p.id} style={{ borderLeftColor: p.color }}>
               <strong>{tl(p.name)}</strong>
               {p.variants.map((v) => {
                 const upcoming = v.prices.filter((x) => x.from > thisMonth()).sort((a, b) => a.from.localeCompare(b.from))
                 return (
-                  <div key={v.id} className="variant">
+                  <div key={v.id} className={ui.variant}>
                     <span>{v.label !== DEFAULT_LABEL && <b>{tl(v.label)} · </b>}{formatDuration(v.durationMin)} · {money(priceOn(v, today()))}</span>
-                    {upcoming.map((x) => <small key={x.from} className="alert">{t('pr.alert', { v: money(x.value), m: monthLabel(x.from) })}</small>)}
+                    {upcoming.map((x) => <small key={x.from} className={ui.alert}>{t('pr.alert', { v: money(x.value), m: monthLabel(x.from) })}</small>)}
                     {v.prices.length > 1 && (
                       <details>
                         <summary>{t('pr.history')}</summary>
-                        <ul className="history">
+                        <ul className={ui.history}>
                           {[...v.prices].sort((a, b) => b.from.localeCompare(a.from)).map((x) => (
                             <li key={x.from}>{x.from === EPOCH ? t('pr.initial') : t('pr.fromMonth', { m: monthLabel(x.from) })}: {money(x.value)}</li>
                           ))}
@@ -157,7 +158,7 @@ export function ProceduresPage() {
               <small>
                 {t('pr.combinesWith', { list: procedures.filter((o) => o.id !== p.id && (p.combinesWith.includes(o.id) || o.combinesWith.includes(p.id))).map((o) => tl(o.name)).join(', ') || t('pr.none') })}
               </small>
-              <button type="button" className="danger small" onClick={() => remove(p.id, tl(p.name))}>{t('pr.delete')}</button>
+              <button type="button" className={`${ui.danger} ${ui.small}`} onClick={() => remove(p.id, tl(p.name))}>{t('pr.delete')}</button>
             </li>
           ))}
         </ul>

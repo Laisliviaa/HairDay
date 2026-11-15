@@ -1,3 +1,4 @@
+import { ui } from './styles'
 import { useState } from 'react'
 import { I18nProvider, useI18n, type Lang } from './i18n'
 import { SalonProvider, useSalon } from './context/SalonContext'
@@ -47,10 +48,10 @@ function Agenda() {
   }
 
   return (
-    <div className="schedule-layout">
+    <div className={ui.scheduleLayout}>
       <ScheduleSidebar onSaved={showSaved} onAdvanced={(day) => setBooking({ date: day, employeeId: filter, time: '' })} />
-      <section className="schedule-agenda" aria-labelledby="agenda-title">
-        <header className="schedule-header">
+      <section className={ui.scheduleAgenda} aria-labelledby="agenda-title">
+        <header className={ui.scheduleHeader}>
           <div><h2 id="agenda-title">{t('sch.agendaTitle')}</h2><p>{t('sch.agendaSubtitle')}</p></div>
           <DateField id="agenda-date" label={t('agenda.date')} value={date} min={MIN_DATE} max={MAX_DATE}
             onChange={(value) => { if (inRange(value)) setDate(value) }} />
@@ -59,19 +60,19 @@ function Agenda() {
           visible.length ? <DayGrid date={date} employees={visible}
             onNew={(employeeId, time) => setBooking({ date, employeeId, time })} onOpen={setDetailId} /> : <p>{t('agenda.noEmp')}</p>
         )}
-        <details className="schedule-extra agenda-extra">
+        <details className={`${ui.scheduleExtra} ${ui.agendaExtra}`}>
           <summary>{t('sch.agendaOptions')}</summary>
-          <div className="dayactions">
+          <div className={ui.dayactions}>
             <select aria-label={t('agenda.filter')} value={filter} onChange={(e) => setFilter(e.target.value)}>
               <option value="">{t('agenda.all')}</option>
               {employees.map((e) => <option key={e.id} value={e.id}>{e.name}</option>)}
             </select>
-            <button type="button" className="ghost" onClick={() => setView(view === 'list' ? 'grid' : 'list')}>{t(view === 'list' ? 'sch.grid' : 'sch.list')}</button>
-            <button type="button" className="ghost" onClick={() => setBlockOpen(true)}>{t('agenda.block')}</button>
+            <button type="button" className={ui.ghost} onClick={() => setView(view === 'list' ? 'grid' : 'list')}>{t(view === 'list' ? 'sch.grid' : 'sch.list')}</button>
+            <button type="button" className={ui.ghost} onClick={() => setBlockOpen(true)}>{t('agenda.block')}</button>
           </div>
-          {view === 'grid' && <ul className="legend" aria-label={t('agenda.legend')}>
+          {view === 'grid' && <ul className={ui.legend} aria-label={t('agenda.legend')}>
             {(['scheduled', 'confirmed', 'done', 'noshow'] as const).map((s) => <li key={s}><i data-status={s} />{t(STATUS_KEY[s])}</li>)}
-            <li><i className="lockkey" />{t('agenda.lock')}</li>
+            <li><i className={ui.lockkey} />{t('agenda.lock')}</li>
           </ul>}
         </details>
       </section>
@@ -87,8 +88,8 @@ function Shell() {
 
   return (
     <>
-      <header className="topbar">
-        <h1 className="logo">HairDay<span className="logo-scissors"><img src="/figma/scissors.svg" alt="" /></span></h1>
+      <header className={ui.topbar}>
+        <h1 className={ui.logo}>HairDay<span className={ui.logoScissors}><img src="/figma/scissors.svg" alt="" /></span></h1>
         <nav aria-label={t('app.sections')}>
           {TABS.map((x) => (
             <button key={x.key} type="button" aria-current={tab === x.key ? 'page' : undefined} onClick={() => setTab(x.key)}>
@@ -96,15 +97,15 @@ function Shell() {
             </button>
           ))}
         </nav>
-        <div className="tools">
-          <div className="langs" role="group" aria-label={t('app.lang')}>
+        <div className={ui.tools}>
+          <div className={ui.langs} role="group" aria-label={t('app.lang')}>
             {LANGS.map((l) => (
               <button key={l.key} type="button" aria-pressed={lang === l.key} title={l.name} aria-label={l.name} onClick={() => setLang(l.key)}>
                 <Flag lang={l.key} />
               </button>
             ))}
           </div>
-          <button type="button" className="themebtn" onClick={toggleTheme} title={theme === 'light' ? t('app.toDark') : t('app.toLight')} aria-label={theme === 'light' ? t('app.toDark') : t('app.toLight')}>
+          <button type="button" className={ui.themebtn} onClick={toggleTheme} title={theme === 'light' ? t('app.toDark') : t('app.toLight')} aria-label={theme === 'light' ? t('app.toDark') : t('app.toLight')}>
             {theme === 'light' ? (
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" /></svg>
             ) : (
@@ -114,7 +115,7 @@ function Shell() {
         </div>
       </header>
 
-      <main className={tab === 'agenda' ? 'content schedule-content' : 'content'}>
+      <main className={tab === 'agenda' ? `${ui.content} ${ui.scheduleContent}` : ui.content}>
         {tab === 'agenda' && <Agenda />}
         {tab === 'clients' && <ClientsPage />}
         {tab === 'procedures' && <ProceduresPage />}

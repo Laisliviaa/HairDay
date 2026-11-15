@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n, type Key } from '../i18n'
@@ -90,16 +91,16 @@ function BookingForm({ initial, onCancel, onSaved }: FormProps) {
   const half = round2(total / 2)
 
   return (
-    <form className="form" onSubmit={handleSubmit} noValidate>
+    <form className={`${ui.form} ${ui.bookingHover}`} onSubmit={handleSubmit} noValidate>
       <h2>{t('bk.title')}</h2>
 
       <label htmlFor="client">{t('bk.client')}</label>
-      <div className="inline">
+      <div className={ui.inline}>
         <select id="client" value={clientId} onChange={(e) => setClientId(e.target.value)}>
           <option value="">{t('common.select')}</option>
           {clients.map((c) => <option key={c.id} value={c.id}>{c.name}{c.cpf && ` · ${formatCPF(c.cpf)}`}</option>)}
         </select>
-        <button type="button" className="ghost" onClick={() => setCreating(true)}>{t('bk.newClient')}</button>
+        <button type="button" className={ui.ghost} onClick={() => setCreating(true)}>{t('bk.newClient')}</button>
       </div>
 
       <label htmlFor="date">{t('bk.date')}</label>
@@ -107,11 +108,11 @@ function BookingForm({ initial, onCancel, onSaved }: FormProps) {
 
       <fieldset>
         <legend>{t('bk.procs')}</legend>
-        <p className="hint">{t('bk.procsHint')}</p>
+        <p className={ui.hint}>{t('bk.procsHint')}</p>
         {procedures.map((p) => (
-          <div key={p.id} className="chips">
+          <div key={p.id} className={ui.chips}>
             {p.variants.map((x) => (
-              <label key={x.id} className="chip">
+              <label key={x.id} className={ui.chip}>
                 <input
                   type="checkbox"
                   checked={selected.includes(x.id)}
@@ -128,7 +129,7 @@ function BookingForm({ initial, onCancel, onSaved }: FormProps) {
         ))}
       </fieldset>
 
-      <div className="two">
+      <div className={ui.two}>
         <div>
           <label htmlFor="employee">{t('bk.employee')}</label>
           <select id="employee" value={empId} onChange={(e) => setEmployeeId(e.target.value)}>
@@ -147,9 +148,9 @@ function BookingForm({ initial, onCancel, onSaved }: FormProps) {
 
       <fieldset>
         <legend>{t('bk.payment')}</legend>
-        <div className="chips">
+        <div className={ui.chips}>
           {([['none', 'bk.payDay'], ['half', 'bk.pay50'], ['full', 'bk.payFull']] as const).map(([key, label]) => (
-            <label key={key} className="chip">
+            <label key={key} className={ui.chip}>
               <input type="radio" name="deposit" checked={deposit === key} onChange={() => setDeposit(key)} />
               <span>{t(label)}</span>
             </label>
@@ -158,19 +159,20 @@ function BookingForm({ initial, onCancel, onSaved }: FormProps) {
       </fieldset>
 
       {items.length > 0 && (
-        <p className="hint">
+        <p className={ui.hint}>
           {t('bk.summary', { d: formatDuration(durationMin), total: money(total) })}
           {deposit === 'half' && t('bk.remaining', { v: money(total - half) })}
           {deposit === 'none' && t('bk.remaining', { v: money(total) })}
         </p>
       )}
 
-      {errors.map((k) => <small key={k} className="error" role="alert">{t(k)}</small>)}
+      {errors.map((k) => <small key={k} className={ui.error} role="alert">{t(k)}</small>)}
 
-      <div className="actions">
-        <button type="button" className="ghost" onClick={onCancel}>{t('common.cancel')}</button>
-        <button type="submit" className="primary">{t('bk.submit')}</button>
+      <div className={ui.actions}>
+        <button type="button" className={ui.ghost} onClick={onCancel}>{t('common.cancel')}</button>
+        <button type="submit" className={ui.primary}>{t('bk.submit')}</button>
       </div>
     </form>
   )
 }
+

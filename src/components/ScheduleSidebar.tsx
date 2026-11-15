@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n } from '../i18n'
@@ -48,23 +49,23 @@ export function ScheduleSidebar({ onSaved, onAdvanced }: Props) {
   }
 
   return (
-    <aside className="schedule-sidebar">
+    <aside className={ui.scheduleSidebar}>
       <header>
         <h2>{t('sch.title')}</h2>
         <p>{t('sch.subtitle')}</p>
       </header>
-      <form className="schedule-form" onSubmit={submit} noValidate>
-        <div className="schedule-field">
+      <form className={ui.scheduleForm} onSubmit={submit} noValidate>
+        <div className={ui.scheduleField}>
           <label htmlFor="schedule-date">{t('bk.date')}</label>
           <DateField id="schedule-date" label={t('bk.date')} value={date} min={MIN_DATE} max={MAX_DATE}
             onChange={(value) => { setDate(value); setTime(''); setSaved(false) }} />
         </div>
-        <fieldset className="schedule-times">
+        <fieldset className={ui.scheduleTimes}>
           <legend>{t('sch.times')}</legend>
           {PERIODS.map((period) => (
-            <div className="time-period" key={period.key}>
+            <div className={ui.timePeriod} key={period.key}>
               <p>{t(PERIOD_KEY[period.key])}</p>
-              <div className="time-options">
+              <div className={ui.timeOptions}>
                 {BOOKING_TIMES.filter((slot) => periodOf(slot) === period.key).map((slot) => (
                   <button key={slot} type="button" aria-pressed={selectedTime === slot} disabled={!availableEmployee(slot)}
                     onClick={() => { setTime(slot); setSaved(false) }}>{slot}</button>
@@ -73,22 +74,22 @@ export function ScheduleSidebar({ onSaved, onAdvanced }: Props) {
             </div>
           ))}
         </fieldset>
-        <div className="schedule-field">
+        <div className={ui.scheduleField}>
           <label htmlFor="schedule-client">{t('bk.client')}</label>
-          <div className="schedule-client">
+          <div className={ui.scheduleClient}>
             <img src="/figma/client.svg" alt="" />
             <input id="schedule-client" type="text" autoComplete="name" placeholder={t('sch.namePlaceholder')}
               value={name} onChange={(e) => { setName(e.target.value); setSaved(false) }} />
           </div>
         </div>
-        {error && <p className="error" role="alert">{error}</p>}
-        {saved && <p className="schedule-success" role="status">{t('sch.saved')}</p>}
-        <button className="schedule-submit" type="submit">{t('bk.submit')}</button>
+        {error && <p className={ui.error} role="alert">{error}</p>}
+        {saved && <p className={ui.scheduleSuccess} role="status">{t('sch.saved')}</p>}
+        <button className={ui.scheduleSubmit} type="submit">{t('bk.submit')}</button>
       </form>
-      <details className="schedule-extra">
+      <details className={ui.scheduleExtra}>
         <summary>{t('sch.more')}</summary>
         <p>{t('sch.simpleHint')}</p>
-        <button type="button" className="ghost" onClick={() => onAdvanced(inRange(date) ? date : today())}>{t('sch.advanced')}</button>
+        <button type="button" className={ui.ghost} onClick={() => onAdvanced(inRange(date) ? date : today())}>{t('sch.advanced')}</button>
       </details>
     </aside>
   )

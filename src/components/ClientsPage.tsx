@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n } from '../i18n'
@@ -24,15 +25,15 @@ export function ClientsPage() {
   }
 
   return (
-    <div className="page">
-      <div className="panel"><ClientForm /></div>
+    <div className={ui.page}>
+      <div className={ui.panel}><ClientForm /></div>
 
       <div>
-        <label className="searchlabel" htmlFor="search">{t('cl.search')}</label>
+        <label className={ui.searchlabel} htmlFor="search">{t('cl.search')}</label>
         <input id="search" type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-        {notice && <p className="notice" role="alert">{notice}</p>}
+        {notice && <p className={ui.notice} role="alert">{notice}</p>}
 
-        <ul className="list">
+        <ul className={ui.list}>
           {shown.length === 0 && <li><small>{t('cl.none')}</small></li>}
           {shown.map((c) => {
             const history = appointments.filter((a) => a.clientId === c.id).sort((a, b) => `${b.date}${b.time}`.localeCompare(`${a.date}${a.time}`))
@@ -40,15 +41,15 @@ export function ClientsPage() {
               <li key={c.id}>
                 <details>
                   <summary><strong>{c.name}</strong> <small>{c.cpf && `${formatCPF(c.cpf)} · `}{formatPhone(c.phone)}</small></summary>
-                  <div className="client-body">
-                    <p className="hint">{c.email || t('cl.noEmail')}</p>
-                    <div className="chips">
-                      <a className="ghost" href={`https://wa.me/55${c.phone}`} target="_blank" rel="noreferrer">{t('cl.wa')}</a>
-                      <button type="button" className="danger" onClick={() => remove(c.id, c.name)}>{t('cl.delete')}</button>
+                  <div className={ui.clientBody}>
+                    <p className={ui.hint}>{c.email || t('cl.noEmail')}</p>
+                    <div className={ui.chips}>
+                      <a className={ui.ghost} href={`https://wa.me/55${c.phone}`} target="_blank" rel="noreferrer">{t('cl.wa')}</a>
+                      <button type="button" className={ui.danger} onClick={() => remove(c.id, c.name)}>{t('cl.delete')}</button>
                     </div>
                     <h3>{t('cl.history', { n: history.length })}</h3>
-                    {history.length === 0 ? <p className="hint">{t('cl.noHistory')}</p> : (
-                      <ul className="history">
+                    {history.length === 0 ? <p className={ui.hint}>{t('cl.noHistory')}</p> : (
+                      <ul className={ui.history}>
                         {history.map((a) => (
                           <li key={a.id}>
                             <strong>{shortDate(a.date)} · {a.time}</strong> {servicesText(a, procedures, tl)}

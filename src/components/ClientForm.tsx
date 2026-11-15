@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n, type Key } from '../i18n'
@@ -33,11 +34,11 @@ export function ClientForm({ onSaved, onCancel }: Props) {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit} noValidate>
+    <form className={ui.form} onSubmit={handleSubmit} noValidate>
       <h2>{t('cf.title')}</h2>
       <label htmlFor="c-name">{t('cf.name')}</label>
       <input id="c-name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      <div className="two">
+      <div className={ui.two}>
         <div>
           <label htmlFor="c-cpf">{t('cf.cpf')}</label>
           <input id="c-cpf" type="text" inputMode="numeric" value={cpf} onChange={(e) => setCpf(formatCPF(e.target.value))} />
@@ -49,10 +50,10 @@ export function ClientForm({ onSaved, onCancel }: Props) {
       </div>
       <label htmlFor="c-email">{t('cf.email')}</label>
       <input id="c-email" type="text" inputMode="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      {errors.map((k) => <small key={k} className="error" role="alert">{t(k)}</small>)}
-      <div className="actions">
-        {onCancel && <button type="button" className="ghost" onClick={onCancel}>{t('common.cancel')}</button>}
-        <button type="submit" className="primary">{t('cf.save')}</button>
+      {errors.map((k) => <small key={k} className={ui.error} role="alert">{t(k)}</small>)}
+      <div className={ui.actions}>
+        {onCancel && <button type="button" className={ui.ghost} onClick={onCancel}>{t('common.cancel')}</button>}
+        <button type="submit" className={ui.primary}>{t('cf.save')}</button>
       </div>
     </form>
   )

@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n, type Key } from '../i18n'
@@ -44,9 +45,9 @@ function BlockForm({ date, employeeId, onClose }: Omit<Props, 'open'>) {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit} noValidate>
+    <form className={ui.form} onSubmit={handleSubmit} noValidate>
       <h2>{t('bl.title')}</h2>
-      <div className="two">
+      <div className={ui.two}>
         <div>
           <label htmlFor="b-emp">{t('bl.employee')}</label>
           <select id="b-emp" value={emp} onChange={(e) => setEmp(e.target.value)}>
@@ -60,7 +61,7 @@ function BlockForm({ date, employeeId, onClose }: Omit<Props, 'open'>) {
           </select>
         </div>
       </div>
-      <div className="two">
+      <div className={ui.two}>
         <div>
           <label htmlFor="b-from">{t('bl.from')}</label>
           <input id="b-from" type="date" min={MIN_DATE} max={MAX_DATE} value={dateFrom} onChange={(e) => { setDateFrom(e.target.value); if (dateTo < e.target.value) setDateTo(e.target.value) }} />
@@ -71,9 +72,9 @@ function BlockForm({ date, employeeId, onClose }: Omit<Props, 'open'>) {
         </div>
       </div>
       {fullDay ? (
-        <p className="hint">{t('bl.fullDay', { reason: t(REASON_KEY[reason]) })}</p>
+        <p className={ui.hint}>{t('bl.fullDay', { reason: t(REASON_KEY[reason]) })}</p>
       ) : (
-        <div className="two">
+        <div className={ui.two}>
           <div>
             <label htmlFor="b-start">{t('bl.startAt')}</label>
             <select id="b-start" value={start} onChange={(e) => setStart(e.target.value)}>{SLOT_STARTS.map((s) => <option key={s}>{s}</option>)}</select>
@@ -84,10 +85,10 @@ function BlockForm({ date, employeeId, onClose }: Omit<Props, 'open'>) {
           </div>
         </div>
       )}
-      {error && <small className="error" role="alert">{t(error.key, { n: error.n ?? 0 })}</small>}
-      <div className="actions">
-        <button type="button" className="ghost" onClick={onClose}>{t('common.cancel')}</button>
-        <button type="submit" className="primary">{t('bl.submit')}</button>
+      {error && <small className={ui.error} role="alert">{t(error.key, { n: error.n ?? 0 })}</small>}
+      <div className={ui.actions}>
+        <button type="button" className={ui.ghost} onClick={onClose}>{t('common.cancel')}</button>
+        <button type="submit" className={ui.primary}>{t('bl.submit')}</button>
       </div>
     </form>
   )

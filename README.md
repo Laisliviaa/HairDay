@@ -1,6 +1,6 @@
 # HairDay
 
-Aplicação de agendamentos para salão/barbearia, feita com React, Vite, TypeScript e CSS para a disciplina de SPA.
+Aplicação de agendamentos para salão/barbearia, feita com React, Vite, TypeScript e Tailwind CSS 4 para a disciplina de SPA.
 
 ## Como executar
 
@@ -54,3 +54,8 @@ Clique no nome do cliente na agenda e em **Reagendar**. Escolha data e horário 
 O mesmo registro é atualizado: cliente, profissional, procedimentos, duração, valor e pagamento são preservados. Não há recálculo de preço ao mudar a data. Horários ocupados, bloqueios, folgas e indisponibilidade do profissional são respeitados. Cancelar descarta as alterações.
 
 [Testes do reagendamento via Playwright MCP](docs/evidencias/reagendar-mcp.json) · [Captura mobile](docs/evidencias/reagendar-mobile.png).
+
+## Revisão de 15/11/2026
+
+[Auditoria do enunciado, sem acessar Figma](docs/AUDITORIA-NOTION.md) · [Migração e testes Tailwind](docs/tailwind/README.md).
+

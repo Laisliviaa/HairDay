@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n, type Key } from '../i18n'
@@ -41,17 +42,17 @@ export function EmployeesPage() {
   }
 
   return (
-    <div className="page">
-      <div className="stack">
-        <form className="form panel" onSubmit={handleSubmit} noValidate>
+    <div className={ui.page}>
+      <div className={ui.stack}>
+        <form className={`${ui.form} ${ui.panel}`} onSubmit={handleSubmit} noValidate>
           <h2>{t('em.new')}</h2>
           <label htmlFor="e-name">{t('em.name')}</label>
           <input id="e-name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
           <fieldset>
             <legend>{t('em.does')}</legend>
-            <div className="chips">
+            <div className={ui.chips}>
               {procedures.map((p) => (
-                <label key={p.id} className="chip">
+                <label key={p.id} className={ui.chip}>
                   <input type="checkbox" checked={procedureIds.includes(p.id)} onChange={() => setProcedureIds((prev) => toggle(prev, p.id))} />
                   <span><i style={{ background: p.color }} />{tl(p.name)}</span>
                 </label>
@@ -60,24 +61,24 @@ export function EmployeesPage() {
           </fieldset>
           <fieldset>
             <legend>{t('em.daysOff')}</legend>
-            <div className="chips">
+            <div className={ui.chips}>
               {WEEK_ORDER.map((d) => (
-                <label key={d} className="chip">
+                <label key={d} className={ui.chip}>
                   <input type="checkbox" checked={daysOff.includes(d)} onChange={() => setDaysOff((prev) => toggle(prev, d))} />
                   <span>{t(WEEKDAY_KEY[d])}</span>
                 </label>
               ))}
             </div>
           </fieldset>
-          {error && <small className="error" role="alert">{t(error)}</small>}
-          <button type="submit" className="primary">{t('em.save')}</button>
+          {error && <small className={ui.error} role="alert">{t(error)}</small>}
+          <button type="submit" className={ui.primary}>{t('em.save')}</button>
         </form>
 
-        <section className="panel">
+        <section className={ui.panel}>
           <h2>{t('em.scale')}</h2>
-          <p className="hint">{t('em.scaleHint')}</p>
-          <div className="scalewrap">
-            <table className="scale">
+          <p className={ui.hint}>{t('em.scaleHint')}</p>
+          <div className={ui.scalewrap}>
+            <table className={ui.scale}>
               <thead>
                 <tr><th scope="col" />{WEEK_ORDER.map((d) => <th key={d} scope="col">{t(WEEKDAY_KEY[d])}</th>)}</tr>
               </thead>
@@ -89,7 +90,7 @@ export function EmployeesPage() {
                       const off = e.daysOff.includes(d)
                       return (
                         <td key={d}>
-                          <button type="button" className={off ? 'off' : 'on'} aria-label={`${e.name}, ${t(WEEKDAY_KEY[d])}: ${off ? t('em.off') : t('em.works')}`} onClick={() => changeDay(e, d)}>
+                          <button type="button" className={off ? ui.off : ui.on} aria-label={`${e.name}, ${t(WEEKDAY_KEY[d])}: ${off ? t('em.off') : t('em.works')}`} onClick={() => changeDay(e, d)}>
                             {off ? t('em.off') : '✓'}
                           </button>
                         </td>
@@ -97,7 +98,7 @@ export function EmployeesPage() {
                     })}
                   </tr>
                 ))}
-                <tr className="summary">
+                <tr className={ui.summary}>
                   <th scope="row">{t('em.open')}</th>
                   {WEEK_ORDER.map((d) => <td key={d}>{employees.some((e) => !e.daysOff.includes(d)) ? t('em.opened') : t('em.closed')}</td>)}
                 </tr>
@@ -108,17 +109,17 @@ export function EmployeesPage() {
       </div>
 
       <div>
-        {notice && <p className="notice" role="alert">{notice}</p>}
-        <ul className="list">
+        {notice && <p className={ui.notice} role="alert">{notice}</p>}
+        <ul className={ui.list}>
           {employees.map((e) => (
             <li key={e.id}>
               <strong>{e.name}</strong>
               <small>{procedures.filter((p) => e.procedureIds.includes(p.id)).map((p) => tl(p.name)).join(', ') || t('em.noProcs')}</small>
-              <div className="chips">
-                <button type="button" className={e.available ? 'status on' : 'status off'} aria-pressed={e.available} onClick={() => toggleEmployee(e.id)}>
+              <div className={ui.chips}>
+                <button type="button" className={e.available ? `${ui.status} ${ui.on}` : `${ui.status} ${ui.off}`} aria-pressed={e.available} onClick={() => toggleEmployee(e.id)}>
                   {e.available ? t('grid.available') : t('grid.unavailable')}
                 </button>
-                <button type="button" className="danger small" onClick={() => remove(e.id, e.name)}>{t('em.delete')}</button>
+                <button type="button" className={`${ui.danger} ${ui.small}`} onClick={() => remove(e.id, e.name)}>{t('em.delete')}</button>
               </div>
             </li>
           ))}

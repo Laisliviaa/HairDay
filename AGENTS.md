@@ -7,7 +7,7 @@ Você é um desenvolvedor front-end React + TypeScript especializado no HairDay.
 Construir um sistema de agendamentos responsivo para salão/barbearia, seguindo o Figma: formulário lateral e lista por períodos; grade por profissional apenas como opção secundária.
 
 ## Stack
-React, Vite, TypeScript e CSS puro. Sem backend e sem bibliotecas extras, a menos que seja necessário.
+React, Vite, TypeScript e Tailwind CSS 4. Sem backend e sem bibliotecas extras, a menos que seja necessário.
 
 ## Regras
 - Componentes pequenos e reutilizáveis, em `src/components`, arquivos `.tsx`.
@@ -32,3 +32,4 @@ React, Vite, TypeScript e CSS puro. Sem backend e sem bibliotecas extras, a meno
 ## Referência visual
 https://www.figma.com/design/0UAXn1uIaIWTUDnBj1Tzct/Plataforma-de-agendamento--Community---Copy-?node-id=3-376
 Cópia acessível: https://www.figma.com/design/vcQfqnyl7k2nBcvqiN0fqZ/Plataforma-de-agendamento?node-id=1164-390. Manter formulário à esquerda, lista por períodos à direita e horários de início das 09h às 21h. O cadastro básico exige apenas nome/data/horário e reserva uma hora; funções extras ficam nas opções avançadas.
+

@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 type Props = {
   id: string
   label: string
@@ -9,10 +10,10 @@ type Props = {
 
 export function DateField({ id, label, value, onChange, min, max }: Props) {
   return (
-    <div className="schedule-date">
+    <div className={ui.scheduleDate}>
       <img src="/figma/calendar.svg" alt="" />
       <input id={id} aria-label={label} type="date" value={value} min={min} max={max} onChange={(e) => onChange(e.target.value)} />
-      <img className="date-chevron" src="/figma/chevron.svg" alt="" />
+      <img className={ui.dateChevron} src="/figma/chevron.svg" alt="" />
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useSalon } from '../context/SalonContext'
 import { useI18n } from '../i18n'
 import type { Appointment, PeriodKey } from '../types/salon'
@@ -21,7 +22,7 @@ export function AppointmentList({ date, employeeId, onOpen }: Props) {
   }
 
   return (
-    <div className="appointment-list">
+    <div className={ui.appointmentList}>
       {PERIODS.map((period) => <PeriodSection key={period.key} period={period}
         appointments={[...grouped[period.key]].sort((a, b) => a.time.localeCompare(b.time))}
         onOpen={onOpen} onRemove={remove} />)}

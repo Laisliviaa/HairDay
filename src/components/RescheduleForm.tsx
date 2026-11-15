@@ -1,3 +1,4 @@
+import { ui } from '../styles'
 import { useState, type FormEvent } from 'react'
 import { useSalon } from '../context/SalonContext'
 import { useI18n } from '../i18n'
@@ -39,10 +40,10 @@ export function RescheduleForm({ appointment, onCancel, onSaved }: Props) {
   }
 
   return (
-    <form className="form" onSubmit={submit} noValidate>
+    <form className={ui.form} onSubmit={submit} noValidate>
       <h2>{t('rsch.title')}</h2>
       <p>{appointment.clientName}{employee && ` · ${employee.name}`}</p>
-      <p className="hint">{t('rsch.hint')}</p>
+      <p className={ui.hint}>{t('rsch.hint')}</p>
       <label htmlFor="reschedule-date">{t('bk.date')}</label>
       <input id="reschedule-date" type="date" min={MIN_DATE} max={MAX_DATE} value={date}
         onChange={(event) => { setDate(event.target.value); setTime(''); setError('') }} />
@@ -51,11 +52,11 @@ export function RescheduleForm({ appointment, onCancel, onSaved }: Props) {
         <option value="">{t('common.select')}</option>
         {slots.map((slot) => <option key={slot} value={slot}>{slot}</option>)}
       </select>
-      {slots.length === 0 && <p role="status" className="hint">{t('rsch.noSlots')}</p>}
-      {error && <p className="error" role="alert">{error}</p>}
-      <div className="actions">
-        <button type="button" className="ghost" onClick={onCancel}>{t('common.cancel')}</button>
-        <button type="submit" className="primary">{t('rsch.save')}</button>
+      {slots.length === 0 && <p role="status" className={ui.hint}>{t('rsch.noSlots')}</p>}
+      {error && <p className={ui.error} role="alert">{error}</p>}
+      <div className={ui.actions}>
+        <button type="button" className={ui.ghost} onClick={onCancel}>{t('common.cancel')}</button>
+        <button type="submit" className={ui.primary}>{t('rsch.save')}</button>
       </div>
     </form>
   )
