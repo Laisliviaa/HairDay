@@ -1,5 +1,10 @@
 // cada chave: [português, inglês, espanhol]. Use {nome} para valores variáveis.
 export const T = {
+  'rsch.title': ['Reagendar', 'Reschedule', 'Reprogramar'],
+  'rsch.hint': ['Altere a data e o horário. Profissional, procedimentos e pagamento serão mantidos.', 'Change the date and time. Professional, services and payment will stay unchanged.', 'Cambia la fecha y el horario. El profesional, los servicios y el pago se mantienen.'],
+  'rsch.save': ['Salvar reagendamento', 'Save reschedule', 'Guardar cambio'],
+  'rsch.chooseTime': ['Escolha um horário disponível.', 'Choose an available time.', 'Elige un horario disponible.'],
+  'rsch.noSlots': ['Não há horários disponíveis para este profissional e atendimento nessa data.', 'No times are available for this professional and appointment on this date.', 'No hay horarios disponibles para este profesional y cita en esta fecha.'],
   'sch.title': ['Agende um atendimento', 'Book an appointment', 'Agenda una cita'],
   'sch.subtitle': ['Selecione data, horário e informe o nome do cliente para criar o agendamento', 'Select a date and time, then enter the client’s name to book an appointment', 'Selecciona fecha, horario y el nombre del cliente para agendar'],
   'sch.agendaTitle': ['Sua agenda', 'Your schedule', 'Tu agenda'],

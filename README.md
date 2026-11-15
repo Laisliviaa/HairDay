@@ -46,3 +46,11 @@ Ao cadastrar, o contexto cria um novo array com spread. A listagem usa filter, r
 - [Desktop](docs/evidencias/mcp-1440.png) · [Mobile](docs/evidencias/mcp-360.png) · [Tema claro](docs/evidencias/figma-claro.png)
 
 Projeto desenvolvido com apoio de IA; esta revisão usou Codex, Context7 MCP e o servidor oficial Playwright MCP. Os assets do Figma e a fonte Catamaran estão em `public/figma`, servidos localmente.
+
+## Reagendar
+
+Clique no nome do cliente na agenda e em **Reagendar**. Escolha data e horário e salve. O botão aparece em atendimentos agendados ou confirmados. A agenda abre automaticamente a nova data.
+
+O mesmo registro é atualizado: cliente, profissional, procedimentos, duração, valor e pagamento são preservados. Não há recálculo de preço ao mudar a data. Horários ocupados, bloqueios, folgas e indisponibilidade do profissional são respeitados. Cancelar descarta as alterações.
+
+[Testes do reagendamento via Playwright MCP](docs/evidencias/reagendar-mcp.json) · [Captura mobile](docs/evidencias/reagendar-mobile.png).
